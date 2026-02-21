@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Majd Khalaf — Spatial Intelligence Researcher</title>
+<title>Majd Khalaf – Spatial Intelligence Researcher</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#080b14;--bg-card:#0e1221;--text:#e4e7f0;--text-mid:#94a0bf;--text-dim:#596380;--accent:#00d4aa;--accent2:#00b4d8;--warm:#e8a44a;--border:rgba(255,255,255,.06);--border-h:rgba(0,212,170,.2)}
+:root{--bg:#1a2236;--bg-card:#222d44;--text:#e8ecf4;--text-mid:#9aa3bc;--text-dim:#6b7490;--accent:#00d4aa;--accent2:#00b4d8;--warm:#e8a44a;--border:rgba(255,255,255,.08);--border-h:rgba(0,212,170,.22)}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.7}
 ::selection{background:var(--accent);color:var(--bg)}
 canvas#bg{position:fixed;inset:0;z-index:0;pointer-events:none}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 3rem;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(16px);background:rgba(8,11,20,.7);border-bottom:1px solid var(--border);transition:background .3s,padding .3s}
-nav.scrolled{background:rgba(8,11,20,.95);padding:.75rem 3rem}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 3rem;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(16px);background:rgba(26,34,54,.75);border-bottom:1px solid var(--border);transition:background .3s,padding .3s}
+nav.scrolled{background:rgba(26,34,54,.95);padding:.75rem 3rem}
 .nav-logo{font-family:'DM Mono',monospace;font-size:.82rem;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;font-weight:500}
 .nav-logo span{color:var(--text-dim);font-weight:300}
 .nav-links{display:flex;gap:2.2rem;list-style:none}
@@ -56,9 +56,9 @@ nav.scrolled{background:rgba(8,11,20,.95);padding:.75rem 3rem}
 .sh-title em{font-style:italic;color:var(--accent)}
 
 .hero-grid{display:grid;grid-template-columns:1fr auto;gap:4rem;align-items:center}
-.hero-photo{width:220px;height:220px;border-radius:16px;overflow:hidden;border:2px solid var(--border);opacity:0;animation:up .7s ease .9s forwards;transform:translateY(24px);position:relative}
-.hero-photo::after{content:'';position:absolute;inset:0;border-radius:16px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
-.hero-photo img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(15%)}
+.hero-photo{width:180px;height:180px;border-radius:50%;overflow:hidden;border:3px solid rgba(0,212,170,.15);opacity:0;animation:up .7s ease .9s forwards;transform:translateY(24px);position:relative;flex-shrink:0;box-shadow:0 8px 30px rgba(0,0,0,.25)}
+.hero-photo::after{content:'';position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(0,212,170,.08);pointer-events:none}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block}
 
 .mission{position:relative;z-index:1;padding:6rem 3rem}
 .mission-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:3px 1fr;gap:2.5rem;align-items:start}
@@ -77,19 +77,19 @@ nav.scrolled{background:rgba(8,11,20,.95);padding:.75rem 3rem}
 
 .r-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
 .r-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:2.2rem;transition:border-color .3s,transform .3s,box-shadow .3s}
-.r-card:hover{border-color:var(--border-h);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,212,170,.04)}
+.r-card:hover{border-color:var(--border-h);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,212,170,.05)}
 .r-card h3{font-size:1.05rem;font-weight:600;margin-bottom:.7rem}
 .r-card p{font-size:.87rem;color:var(--text-mid);line-height:1.7;font-weight:300}
 .r-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
-.r-tag{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.04em;padding:.25rem .6rem;border-radius:100px;background:rgba(0,212,170,.05);border:1px solid rgba(0,212,170,.12);color:var(--accent)}
+.r-tag{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.04em;padding:.25rem .6rem;border-radius:100px;background:rgba(0,212,170,.06);border:1px solid rgba(0,212,170,.14);color:var(--accent)}
 
 .pub{padding:1.6rem 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:110px 1fr;gap:1.8rem;align-items:start;transition:background .25s}
 .pub:first-child{border-top:1px solid var(--border)}
-.pub:hover{background:rgba(0,212,170,.015)}
+.pub:hover{background:rgba(0,212,170,.02)}
 .pub-badge{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;padding:.3rem .7rem;border-radius:100px;text-align:center;white-space:nowrap}
-.pub-badge.published{background:rgba(0,212,170,.08);color:var(--accent);border:1px solid rgba(0,212,170,.18)}
-.pub-badge.review{background:rgba(0,180,216,.08);color:var(--accent2);border:1px solid rgba(0,180,216,.18)}
-.pub-badge.prep{background:rgba(232,164,74,.08);color:var(--warm);border:1px solid rgba(232,164,74,.18)}
+.pub-badge.published{background:rgba(0,212,170,.1);color:var(--accent);border:1px solid rgba(0,212,170,.2)}
+.pub-badge.review{background:rgba(0,180,216,.1);color:var(--accent2);border:1px solid rgba(0,180,216,.2)}
+.pub-badge.prep{background:rgba(232,164,74,.1);color:var(--warm);border:1px solid rgba(232,164,74,.2)}
 .pub h4{font-size:.95rem;font-weight:500;margin-bottom:.35rem;line-height:1.5}
 .pub .authors{font-size:.83rem;color:var(--text-mid);font-weight:300;margin-bottom:.25rem}
 .pub .authors strong{color:var(--accent);font-weight:500}
@@ -126,7 +126,7 @@ nav.scrolled{background:rgba(8,11,20,.95);padding:.75rem 3rem}
 .sk-title{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
 .sk-tags{display:flex;flex-wrap:wrap;gap:.4rem}
 .sk-t{font-size:.76rem;padding:.3rem .7rem;border-radius:6px;background:rgba(255,255,255,.03);border:1px solid var(--border);color:var(--text-mid);font-weight:300;transition:all .25s}
-.sk-t:hover{background:rgba(0,212,170,.05);border-color:var(--border-h);color:var(--accent)}
+.sk-t:hover{background:rgba(0,212,170,.06);border-color:var(--border-h);color:var(--accent)}
 
 .contact{text-align:center;padding:8rem 3rem;position:relative;z-index:1}
 .contact .sh-label{justify-content:center}
@@ -134,7 +134,7 @@ nav.scrolled{background:rgba(8,11,20,.95);padding:.75rem 3rem}
 .contact-sub{font-size:1rem;color:var(--text-mid);font-weight:300;margin-bottom:2.5rem;max-width:460px;margin-left:auto;margin-right:auto}
 .contact-links{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap}
 .c-link{font-family:'DM Mono',monospace;font-size:.76rem;letter-spacing:.06em;padding:.85rem 2rem;border-radius:100px;text-decoration:none;transition:all .3s;border:1px solid var(--border);color:var(--text-mid);background:var(--bg-card)}
-.c-link:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,212,170,.08)}
+.c-link:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,212,170,.1)}
 .c-link.pri{background:var(--accent);color:var(--bg);border-color:var(--accent);font-weight:500}
 .c-link.pri:hover{background:#00e8bb;box-shadow:0 8px 28px rgba(0,212,170,.2);color:var(--bg)}
 
@@ -151,7 +151,7 @@ nav{padding:.9rem 1.5rem}.section{padding:5rem 1.5rem}.hero-inner{padding:0 1.5r
 .r-grid,.edu-grid,.sk-grid{grid-template-columns:1fr}.pub{grid-template-columns:1fr;gap:.6rem}
 .hero-name{font-size:clamp(2.4rem,9vw,4rem)}.hero-meta{gap:1.8rem}
 .hero-grid{grid-template-columns:1fr;text-align:center}
-.hero-photo{width:160px;height:160px;margin:0 auto 1.5rem}
+.hero-photo{width:120px;height:120px;margin:0 auto 1.5rem}
 .hero-label{justify-content:center}
 .hero-desc{margin-left:auto;margin-right:auto}
 .hero-meta{justify-content:center}
@@ -192,9 +192,9 @@ nav{padding:.9rem 1.5rem}.section{padding:5rem 1.5rem}.hero-inner{padding:0 1.5r
 </section>
 
 <section class="section" id="about"><div class="inner">
-<div class="sh rv"><div class="sh-label">01 — About</div><h2 class="sh-title">Low-power intelligent sensing for <em>human-centered</em> environments</h2></div>
+<div class="sh rv"><div class="sh-label">01 – About</div><h2 class="sh-title">Low-power intelligent sensing for <em>human-centered</em> environments</h2></div>
 <div class="about-text rv rv-d1">
-<p>I am a Ph.D. student in Computer Engineering at Northeastern University, working within the <a href="https://sinrg.org/" target="_blank">Spatial Intelligence Research Group (SINRG)</a> under Prof. Mallesham Dasari. My research sits at the intersection of wearable computing, wireless sensing, and edge intelligence, building systems that perceive and reason about physical space with minimal power budgets.</p>
+<p>I am a Ph.D. student in Computer Engineering at Northeastern University, working within the <a href="https://sinrg.org/" target="_blank">Spatial Intelligence Research Group (SINRG)</a> under Prof. Mallesham Dasari. My research sits at the intersection of wearable computing, wireless sensing, and edge intelligence, focused on building systems that perceive and reason about physical space with minimal power budgets.</p>
 <p>I investigate multimodal traffic dynamics in XR and AI glasses, develop capacitive sensing approaches for eye tracking, and design adaptive streaming and bitrate control for immersive content. My work spans Bluetooth, BLE, Wi-Fi Direct, and 5G protocols, always aiming to push the boundary of what lightweight, wearable devices can sense and understand.</p>
 <p>Before starting my Ph.D., I earned my B.S. in Electrical & Computer Engineering from Norwich University (with minors in Mathematics and Computer Science), where I was named Student Engineer of the Year and served as President of Eta Kappa Nu.</p>
 </div>
@@ -205,27 +205,27 @@ nav{padding:.9rem 1.5rem}.section{padding:5rem 1.5rem}.hero-inner{padding:0 1.5r
 <div class="mission-line"></div>
 <div class="mission-content">
 <div class="mission-label">Why This Research Matters</div>
-<div class="mission-quote">The next generation of computing won't live on screens — it will live <em>in the space around us.</em></div>
+<div class="mission-quote">The next generation of computing won't live on screens. It will live <em>in the space around us.</em></div>
 <div class="mission-body">
-<p>Billions of people interact with the physical world through senses that machines still barely understand. We wear glasses, watches, earbuds — devices that sit millimeters from our bodies — yet they remain largely blind to the spatial context they inhabit. I believe that by making these devices spatially aware at ultra-low power, we can fundamentally change how people navigate, perceive, and interact with their environments.</p>
-<p>This is personal. I've seen how something as simple as a pair of AI-powered glasses can transform mobility for someone with visual impairment — not through a massive server farm, but through lightweight, on-device intelligence that respects the constraints of what a person can actually carry and wear. That gap between what's possible in a lab and what's deployable on a human body is where my research lives.</p>
-<p>The broader impact I'm working toward is a world where spatial intelligence is as ubiquitous and invisible as Wi-Fi — where wearable devices seamlessly understand proximity, motion, gaze, and intent, enabling safer navigation for the visually impaired, more natural human-computer interaction for everyone, and entirely new forms of ambient computing that don't demand our constant attention. I want to build the sensing and systems layer that makes that future practical, efficient, and accessible.</p>
+<p>We carry glasses, watches, and earbuds every day, yet these devices remain largely blind to the spatial context they inhabit. I believe that making them spatially aware at ultra-low power can fundamentally change how people navigate and interact with their environments.</p>
+<p>I've seen how a simple pair of AI-powered glasses can transform mobility for someone with visual impairment, not through cloud-scale compute, but through lightweight, on-device intelligence. The gap between what's possible in a lab and what's deployable on a human body is where my research lives.</p>
+<p>I'm working toward a future where spatial intelligence is as ubiquitous as Wi-Fi: wearable devices that understand proximity, motion, and gaze, enabling safer navigation, more natural interaction, and ambient computing that doesn't demand our constant attention.</p>
 </div>
 </div>
 </div>
 </section>
 
 <section class="section" id="research"><div class="inner">
-<div class="sh rv"><div class="sh-label">02 — Research Areas</div><h2 class="sh-title">Sensing the <em>invisible</em> architecture of space</h2></div>
+<div class="sh rv"><div class="sh-label">02 – Research Areas</div><h2 class="sh-title">Sensing the <em>invisible</em> architecture of space</h2></div>
 <div class="r-grid">
-<div class="r-card rv rv-d1"><h3>Wireless Sensing & XR Traffic Analysis</h3><p>Dissecting multimodal traffic dynamics across XR and AI glasses — measuring end-to-end latency, throughput, and power consumption over Bluetooth Classic, BLE, Wi-Fi Direct, and 5G. Benchmarking performance across Meta Ray-Ban, Dragon Glass, Even G1, and Brilliant Labs Frame.</p><div class="r-tags"><span class="r-tag">Bluetooth/BLE</span><span class="r-tag">Wi-Fi Direct</span><span class="r-tag">5G</span><span class="r-tag">Wireshark</span><span class="r-tag">XR Traffic</span></div></div>
-<div class="r-card rv rv-d2"><h3>Wearable Spatial Inference & Eye Tracking</h3><p>Designing capacitive sensor-based eye tracking systems for power-efficient gaze estimation in mobile XR. Building AI-powered smart glasses for visually impaired users to increase mobility and independence through real-time spatial awareness.</p><div class="r-tags"><span class="r-tag">Capacitive Sensing</span><span class="r-tag">Eye Tracking</span><span class="r-tag">Smart Glasses</span><span class="r-tag">Accessibility</span></div></div>
-<div class="r-card rv rv-d3"><h3>Adaptive Streaming & Edge Intelligence</h3><p>Object-level dynamic bitrate control for live streaming XR scenes using geometric mesh representations. End-to-end network evaluation across real-world bandwidth traces demonstrating improved quality-of-experience and bandwidth efficiency.</p><div class="r-tags"><span class="r-tag">Adaptive Bitrate</span><span class="r-tag">Mesh Streaming</span><span class="r-tag">QoE Optimization</span><span class="r-tag">Edge ML</span></div></div>
+<div class="r-card rv rv-d1"><h3>Wireless Sensing & XR Traffic</h3><p>Characterizing multimodal traffic patterns in XR and AI glasses across Bluetooth, BLE, Wi-Fi Direct, and 5G. Profiling latency, throughput, and power on commercial devices including Meta Ray-Ban, Even G1, and Brilliant Labs Frame.</p><div class="r-tags"><span class="r-tag">Bluetooth/BLE</span><span class="r-tag">Wi-Fi Direct</span><span class="r-tag">5G</span><span class="r-tag">Wireshark</span></div></div>
+<div class="r-card rv rv-d2"><h3>Wearable Sensing & Eye Tracking</h3><p>Developing capacitive sensor-based eye tracking for power-efficient gaze estimation in mobile XR. Building AI-powered smart glasses that support spatial awareness and independent navigation for visually impaired users.</p><div class="r-tags"><span class="r-tag">Capacitive Sensing</span><span class="r-tag">Eye Tracking</span><span class="r-tag">Smart Glasses</span><span class="r-tag">Accessibility</span></div></div>
+<div class="r-card rv rv-d3"><h3>Adaptive Streaming & Edge ML</h3><p>Object-level bitrate control for live XR scene streaming using geometric mesh representations. Evaluating adaptive bitrate performance across real-world bandwidth traces to improve quality-of-experience under constrained conditions.</p><div class="r-tags"><span class="r-tag">Adaptive Bitrate</span><span class="r-tag">Mesh Streaming</span><span class="r-tag">QoE</span><span class="r-tag">Edge ML</span></div></div>
 </div>
 </div></section>
 
 <section class="section" id="publications"><div class="inner">
-<div class="sh rv"><div class="sh-label">03 — Publications</div><h2 class="sh-title">Selected <em>works</em></h2></div>
+<div class="sh rv"><div class="sh-label">03 – Publications</div><h2 class="sh-title">Selected <em>works</em></h2></div>
 <div>
 <div class="pub rv"><div><span class="pub-badge prep">In Prep</span></div><div><h4>Capacitive Sensing for Eye Tracking</h4><div class="authors"><strong>M. Khalaf</strong>, M. Dasari</div><div class="venue">Targeting ACM MobiCom 2026</div></div></div>
 <div class="pub rv"><div><span class="pub-badge review">Under Review</span></div><div><h4>Eyes and Ears on the Edge: Dissecting Multimodal Traffic Dynamics in XR and AI Glasses</h4><div class="authors"><strong>M. Khalaf</strong>, M. Garcia, M. Chadha, M. Dasari</div><div class="venue">Submitted to ACM IMC 2026</div></div></div>
@@ -238,24 +238,24 @@ nav{padding:.9rem 1.5rem}.section{padding:5rem 1.5rem}.hero-inner{padding:0 1.5r
 </div></section>
 
 <section class="section" id="experience"><div class="inner">
-<div class="sh rv"><div class="sh-label">04 — Experience</div><h2 class="sh-title">Building systems at <em>every layer</em></h2></div>
+<div class="sh rv"><div class="sh-label">04 – Experience</div><h2 class="sh-title">Building systems at <em>every layer</em></h2></div>
 <div class="timeline">
-<div class="t-item rv"><div class="t-date">Feb 2025 — Sep 2025</div><div class="t-role">Software Engineer II</div><div class="t-co">Atombeam Technologies</div><div class="t-loc">Moraga, CA</div><div class="t-desc">Developed cloud infrastructure using Infrastructure-as-Code, optimized data pipelines for compression algorithms, designed ETL flows, and improved CI/CD automation and observability for distributed systems.</div></div>
-<div class="t-item rv"><div class="t-date">Jun 2024 — Aug 2024</div><div class="t-role">Site Reliability Engineer Intern</div><div class="t-co">Walmart Advanced Systems & Robotics</div><div class="t-loc">Andover, MA</div><div class="t-desc">Automated deployments on Linux VMs with Ansible, Docker, and Azure CLI. Containerized Datadog agents for synthetic testing, optimized a Golang documentation viewer with goroutines, and automated artifact distribution.</div></div>
-<div class="t-item rv"><div class="t-date">Jan 2024 — May 2025</div><div class="t-role">AI Research Fellow & Teaching Assistant</div><div class="t-co">Norwich University AI Center</div><div class="t-loc">Northfield, VT</div><div class="t-desc">Collaborated across digital forensics, medical, and ECE domains to design AI solutions. Built and processed complex datasets, delivered lectures for senior-level AI courses, and mentored French military college students on AI capstone projects.</div></div>
+<div class="t-item rv"><div class="t-date">Feb 2025 – Sep 2025</div><div class="t-role">Software Engineer II</div><div class="t-co">Atombeam Technologies</div><div class="t-loc">Moraga, CA</div><div class="t-desc">Developed cloud infrastructure using Infrastructure-as-Code, optimized data pipelines for compression algorithms, designed ETL flows, and improved CI/CD automation and observability for distributed systems.</div></div>
+<div class="t-item rv"><div class="t-date">Jun 2024 – Aug 2024</div><div class="t-role">Site Reliability Engineer Intern</div><div class="t-co">Walmart Advanced Systems & Robotics</div><div class="t-loc">Andover, MA</div><div class="t-desc">Automated deployments on Linux VMs with Ansible, Docker, and Azure CLI. Containerized Datadog agents for synthetic testing, optimized a Golang documentation viewer with goroutines, and automated artifact distribution.</div></div>
+<div class="t-item rv"><div class="t-date">Jan 2024 – May 2025</div><div class="t-role">AI Research Fellow & Teaching Assistant</div><div class="t-co">Norwich University AI Center</div><div class="t-loc">Northfield, VT</div><div class="t-desc">Collaborated across digital forensics, medical, and ECE domains to design AI solutions. Built and processed complex datasets, delivered lectures for senior-level AI courses, and mentored French military college students on AI capstone projects.</div></div>
 </div>
 </div></section>
 
 <section class="section" id="education"><div class="inner">
-<div class="sh rv"><div class="sh-label">05 — Education</div><h2 class="sh-title">Academic <em>foundation</em></h2></div>
+<div class="sh rv"><div class="sh-label">05 – Education</div><h2 class="sh-title">Academic <em>foundation</em></h2></div>
 <div class="edu-grid">
-<div class="edu rv"><div class="edu-deg">Ph.D. Student</div><div class="edu-school">Northeastern University</div><div class="edu-field">Computer Engineering</div><div class="edu-date">September 2025 — May 2030 (expected)</div><div class="edu-adv">Advisor: <a href="https://sinrg.org/" target="_blank">Prof. Mallesham Dasari</a></div></div>
-<div class="edu rv rv-d1"><div class="edu-deg">B.S.</div><div class="edu-school">Norwich University</div><div class="edu-field">Electrical & Computer Engineering</div><div class="edu-date">August 2021 — May 2025</div><div class="edu-honors"><div class="edu-hon">Student Engineer of the Year, 2025</div><div class="edu-hon">Carol E. Stephens Memorial Award, 2024</div><div class="edu-hon">Engineers Society Freshman Award, 2022</div><div class="edu-hon">President, Eta Kappa Nu (HKN)</div><div class="edu-hon">Vice President, Tau Beta Pi</div></div></div>
+<div class="edu rv"><div class="edu-deg">Ph.D. Student</div><div class="edu-school">Northeastern University</div><div class="edu-field">Computer Engineering</div><div class="edu-date">September 2025 – May 2030 (expected)</div><div class="edu-adv">Advisor: <a href="https://sinrg.org/" target="_blank">Prof. Mallesham Dasari</a></div></div>
+<div class="edu rv rv-d1"><div class="edu-deg">B.S.</div><div class="edu-school">Norwich University</div><div class="edu-field">Electrical & Computer Engineering</div><div class="edu-date">August 2021 – May 2025</div><div class="edu-honors"><div class="edu-hon">Student Engineer of the Year, 2025</div><div class="edu-hon">Carol E. Stephens Memorial Award, 2024</div><div class="edu-hon">Engineers Society Freshman Award, 2022</div><div class="edu-hon">President, Eta Kappa Nu (HKN)</div><div class="edu-hon">Vice President, Tau Beta Pi</div></div></div>
 </div>
 </div></section>
 
 <section class="section" id="skills"><div class="inner">
-<div class="sh rv"><div class="sh-label">06 — Technical Skills</div><h2 class="sh-title">Tools of the <em>trade</em></h2></div>
+<div class="sh rv"><div class="sh-label">06 – Technical Skills</div><h2 class="sh-title">Tools of the <em>trade</em></h2></div>
 <div class="sk-grid">
 <div class="sk rv"><div class="sk-title">Languages</div><div class="sk-tags"><span class="sk-t">Python</span><span class="sk-t">Golang</span><span class="sk-t">C/C++</span><span class="sk-t">Bash</span><span class="sk-t">MATLAB</span><span class="sk-t">R</span><span class="sk-t">Node.js</span><span class="sk-t">Verilog/VHDL</span></div></div>
 <div class="sk rv rv-d1"><div class="sk-title">ML / AI</div><div class="sk-tags"><span class="sk-t">PyTorch</span><span class="sk-t">TensorFlow</span><span class="sk-t">Transformers</span><span class="sk-t">GANs</span><span class="sk-t">Hugging Face</span><span class="sk-t">Pandas</span><span class="sk-t">NumPy</span></div></div>
@@ -267,7 +267,7 @@ nav{padding:.9rem 1.5rem}.section{padding:5rem 1.5rem}.hero-inner{padding:0 1.5r
 </div></section>
 
 <section class="contact" id="contact">
-<div class="sh-label">07 — Contact</div>
+<div class="sh-label">07 – Contact</div>
 <h2 class="sh-title">Let's <em>connect</em></h2>
 <p class="contact-sub">Open to research collaborations, spatial intelligence, and the future of wearable sensing.</p>
 <div class="contact-links">
@@ -309,11 +309,11 @@ const pts=[];const pN=Math.min(50,Math.floor(W*H/18000));
 for(let i=0;i<pN;i++)pts.push({x:(Math.random()-.5)*W*.85,y:Math.random()*H*5,z:Math.random()*400+200,ph:Math.random()*6.28,sp:.001+Math.random()*.003,am:Math.random()*15+6,r:.3+Math.random()*.8,nd:Math.random()>.9});
 
 function frame(t){X.clearRect(0,0,W,H);
-const gs=120,oy=(-sY*.04)%gs;X.strokeStyle='rgba(0,212,170,.012)';X.lineWidth=.5;
+const gs=120,oy=(-sY*.04)%gs;X.strokeStyle='rgba(0,212,170,.02)';X.lineWidth=.5;
 for(let x=0;x<W;x+=gs){X.beginPath();X.moveTo(x,0);X.lineTo(x,H);X.stroke()}
 for(let y=oy;y<H;y+=gs){X.beginPath();X.moveTo(0,y);X.lineTo(W,y);X.stroke()}
-const dr=[];pts.forEach(n=>{const nx=n.x+W/2+Math.sin(t*n.sp+n.ph)*n.am,ny=n.y+Math.cos(t*n.sp*.6+n.ph)*n.am*.3,sy=ny-sY*(.12+(n.z/500)*.45),p=500/(500+n.z),sx=W/2+(nx-W/2)*p,ssy=H/2+(sy-H/2)*p;if(ssy<-30||ssy>H+30)return;const a=p*.5;if(n.nd){const pu=.75+.25*Math.sin(t*.002+n.ph);X.beginPath();X.arc(sx,ssy,n.r*p*2*pu,0,Math.PI*2);X.fillStyle='rgba(0,212,170,'+(a*.5*pu).toFixed(3)+')';X.fill()}else{X.beginPath();X.arc(sx,ssy,n.r*p,0,Math.PI*2);X.fillStyle='rgba(140,150,180,'+(a*.25).toFixed(3)+')';X.fill()}dr.push({x:sx,y:ssy,a,nd:n.nd})});
-for(let i=0;i<dr.length;i++){for(let j=i+1;j<dr.length;j++){const dx=dr[i].x-dr[j].x,dy=dr[i].y-dr[j].y,d=Math.sqrt(dx*dx+dy*dy),mx=(dr[i].nd||dr[j].nd)?120:70;if(d<mx){X.beginPath();X.moveTo(dr[i].x,dr[i].y);X.lineTo(dr[j].x,dr[j].y);X.strokeStyle='rgba(0,212,170,'+((1-d/mx)*.07).toFixed(3)+')';X.lineWidth=.4;X.stroke()}}}
+const dr=[];pts.forEach(n=>{const nx=n.x+W/2+Math.sin(t*n.sp+n.ph)*n.am,ny=n.y+Math.cos(t*n.sp*.6+n.ph)*n.am*.3,sy=ny-sY*(.12+(n.z/500)*.45),p=500/(500+n.z),sx=W/2+(nx-W/2)*p,ssy=H/2+(sy-H/2)*p;if(ssy<-30||ssy>H+30)return;const a=p*.5;if(n.nd){const pu=.75+.25*Math.sin(t*.002+n.ph);X.beginPath();X.arc(sx,ssy,n.r*p*2*pu,0,Math.PI*2);X.fillStyle='rgba(0,212,170,'+(a*.5*pu).toFixed(3)+')';X.fill()}else{X.beginPath();X.arc(sx,ssy,n.r*p,0,Math.PI*2);X.fillStyle='rgba(150,160,190,'+(a*.25).toFixed(3)+')';X.fill()}dr.push({x:sx,y:ssy,a,nd:n.nd})});
+for(let i=0;i<dr.length;i++){for(let j=i+1;j<dr.length;j++){const dx=dr[i].x-dr[j].x,dy=dr[i].y-dr[j].y,d=Math.sqrt(dx*dx+dy*dy),mx=(dr[i].nd||dr[j].nd)?120:70;if(d<mx){X.beginPath();X.moveTo(dr[i].x,dr[i].y);X.lineTo(dr[j].x,dr[j].y);X.strokeStyle='rgba(0,212,170,'+((1-d/mx)*.08).toFixed(3)+')';X.lineWidth=.4;X.stroke()}}}
 objs.forEach(o=>o.draw(t));requestAnimationFrame(frame)}requestAnimationFrame(frame);
 
 document.querySelectorAll('.rv').forEach(el=>{new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('vis')})},{threshold:.1,rootMargin:'0px 0px -30px 0px'}).observe(el)});
