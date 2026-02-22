@@ -129,6 +129,16 @@ nav.scrolled{background:rgba(26,34,54,.95);padding:.75rem 3rem}
 .sk-t:hover{background:rgba(0,212,170,.06);border-color:var(--border-h);color:var(--accent)}
 
 .contact{text-align:center;padding:8rem 3rem;position:relative;z-index:1}
+
+.updates-tl{position:relative;padding-left:2.5rem}
+.updates-tl::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--accent),var(--border) 80%,transparent)}
+.u-item{position:relative;padding-bottom:2rem}
+.u-item:last-child{padding-bottom:0}
+.u-item::before{content:'';position:absolute;left:-2.5rem;top:.45rem;width:8px;height:8px;border-radius:50%;background:var(--bg);border:2px solid var(--accent);transform:translateX(-3.5px)}
+.u-date{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.08em;color:var(--text-dim);margin-bottom:.3rem}
+.u-text{font-size:.92rem;color:var(--text-mid);font-weight:300;line-height:1.6}
+.u-text strong{color:var(--text);font-weight:500}
+.u-tag{display:inline-block;font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.04em;padding:.15rem .5rem;border-radius:100px;background:rgba(0,158,126,.06);border:1px solid rgba(0,158,126,.15);color:var(--accent);margin-left:.4rem;vertical-align:middle}
 .contact .sh-label{justify-content:center}
 .contact .sh-title{margin-top:.8rem;margin-bottom:1.2rem}
 .contact-sub{font-size:1rem;color:var(--text-mid);font-weight:300;margin-bottom:2.5rem;max-width:460px;margin-left:auto;margin-right:auto}
@@ -166,10 +176,10 @@ nav{padding:.9rem 1.5rem}.section{padding:5rem 1.5rem}.hero-inner{padding:0 1.5r
 <body>
 <canvas id="bg"></canvas>
 <nav id="nav">
-<div class="nav-logo"><span style="color:var(--accent2)">M</span>ajd Khalaf <span>// SINRG</span></div>
+<div class="nav-logo">Majd Khalaf <span>// SINRG</span></div>
 <button class="nav-toggle" id="nt" aria-label="Menu"><span></span><span></span><span></span></button>
 <ul class="nav-links" id="nl">
-<li><a href="#about">About</a></li><li><a href="#research">Research</a></li><li><a href="#publications">Publications</a></li><li><a href="#experience">Experience</a></li><li><a href="#education">Education</a></li><li><a href="#contact">Contact</a></li>
+<li><a href="#about">About</a></li><li><a href="#research">Research</a></li><li><a href="#publications">Publications</a></li><li><a href="#experience">Experience</a></li><li><a href="#education">Education</a></li><li><a href="#updates">Updates</a></li><li><a href="#contact">Contact</a></li>
 </ul>
 </nav>
 
@@ -178,7 +188,7 @@ nav{padding:.9rem 1.5rem}.section{padding:5rem 1.5rem}.hero-inner{padding:0 1.5r
 <div class="hero-grid">
 <div>
 <div class="hero-label">Spatial Intelligence Researcher</div>
-<h1 class="hero-name"><span style="color:var(--accent2)">M</span>ajd <em>Khalaf</em></h1>
+<h1 class="hero-name">Majd <em>Khalaf</em></h1>
 <p class="hero-desc">I develop low-power spatial intelligence systems using wearable and wireless sensing for human-environment interaction.</p>
 <div class="hero-meta">
 <div class="meta-item"><span class="meta-label">Affiliation</span><span class="meta-val"><a href="https://sinrg.org/" target="_blank">SINRG</a> · Northeastern University</span></div>
@@ -230,9 +240,9 @@ nav{padding:.9rem 1.5rem}.section{padding:5rem 1.5rem}.hero-inner{padding:0 1.5r
 <div class="pub rv"><div><span class="pub-badge review">Under Review</span></div><div><h4>Multimodal traffic analysis in wearable XR systems</h4><div class="venue">Submitted to ACM IMC 2026 · <a href="mailto:majd.khalaff@gmail.com">Reach out for early draft</a></div></div></div>
 <div class="pub rv"><div><span class="pub-badge review">Under Review</span></div><div><h4>AI-assisted spatial awareness for accessibility</h4><div class="venue">Submitted to IEEE Transactions on Human-Machine Systems · <a href="mailto:majd.khalaff@gmail.com">Reach out for early draft</a></div></div></div>
 <div class="pub rv"><div><span class="pub-badge review">Under Review</span></div><div><h4>Adaptive bitrate control for immersive scene streaming</h4><div class="venue">Submitted to ACM SIGCOMM 2026 · <a href="mailto:majd.khalaff@gmail.com">Reach out for early draft</a></div></div></div>
-<div class="pub rv"><div><span class="pub-badge published">Published</span></div><div><h4>Identifying Persons of Interest in Digital Forensics Using NLP-Based AI</h4><div class="authors">J. Adkins, A. Bataineh, <strong><span style="color:var(--accent2)">M.</span> Khalaf</strong></div><div class="venue">Future Internet, 16(11):426, 2024 · <a href="https://doi.org/10.3390/fi16110426" target="_blank">doi:10.3390/fi16110426</a></div></div></div>
-<div class="pub rv"><div><span class="pub-badge published">Published</span></div><div><h4>Future-Ready Students: Survey Analysis Utilizing Natural Language Processing</h4><div class="authors">T. C. Olukanni, <strong><span style="color:var(--accent2)">M.</span> Khalaf</strong>, M. Cross, D. M. Feinauer, A. Al Bataineh</div><div class="venue">FYEE 2024 · <a href="https://doi.org/10.18260/1-2--48593" target="_blank">doi:10.18260/1-2--48593</a></div></div></div>
-<div class="pub rv"><div><span class="pub-badge published">Published</span></div><div><h4>Advanced Misinformation Detection: A Bi-LSTM Model Optimized by Genetic Algorithms</h4><div class="authors">A. Al Bataineh, V. Reyes, T. Olukanni, <strong><span style="color:var(--accent2)">M.</span> Khalaf</strong>, A. Vibho, R. Pedyuk</div><div class="venue">Electronics, 12(15):3250, 2023 · <a href="https://doi.org/10.3390/electronics12153250" target="_blank">doi:10.3390/electronics12153250</a></div></div></div>
+<div class="pub rv"><div><span class="pub-badge published">Published</span></div><div><h4>Identifying Persons of Interest in Digital Forensics Using NLP-Based AI</h4><div class="authors">J. Adkins, A. Bataineh, <strong>M. Khalaf</strong></div><div class="venue">Future Internet, 16(11):426, 2024 · <a href="https://doi.org/10.3390/fi16110426" target="_blank">doi:10.3390/fi16110426</a></div></div></div>
+<div class="pub rv"><div><span class="pub-badge published">Published</span></div><div><h4>Future-Ready Students: Survey Analysis Utilizing Natural Language Processing</h4><div class="authors">T. C. Olukanni, <strong>M. Khalaf</strong>, M. Cross, D. M. Feinauer, A. Al Bataineh</div><div class="venue">FYEE 2024 · <a href="https://doi.org/10.18260/1-2--48593" target="_blank">doi:10.18260/1-2--48593</a></div></div></div>
+<div class="pub rv"><div><span class="pub-badge published">Published</span></div><div><h4>Advanced Misinformation Detection: A Bi-LSTM Model Optimized by Genetic Algorithms</h4><div class="authors">A. Al Bataineh, V. Reyes, T. Olukanni, <strong>M. Khalaf</strong>, A. Vibho, R. Pedyuk</div><div class="venue">Electronics, 12(15):3250, 2023 · <a href="https://doi.org/10.3390/electronics12153250" target="_blank">doi:10.3390/electronics12153250</a></div></div></div>
 </div>
 </div></section>
 
@@ -265,8 +275,25 @@ nav{padding:.9rem 1.5rem}.section{padding:5rem 1.5rem}.hero-inner{padding:0 1.5r
 </div>
 </div></section>
 
+<section class="section" id="updates"><div class="inner">
+<div class="sh rv"><div class="sh-label">07 – Updates</div><h2 class="sh-title">What I'm <em>up to</em></h2></div>
+<div class="updates-tl">
+<div class="u-item rv"><div class="u-date">Feb 2026</div><div class="u-text">Submitted paper to <strong>ACM SIGCOMM 2026</strong> on adaptive bitrate control for XR streaming <span class="u-tag">submission</span></div></div>
+<div class="u-item rv"><div class="u-date">Nov 2025</div><div class="u-text">Submitted paper to <strong>ACM IMC 2026</strong> on multimodal traffic analysis in wearable XR systems <span class="u-tag">submission</span></div></div>
+<div class="u-item rv"><div class="u-date">Sep 2025</div><div class="u-text">Started <strong>Ph.D. in Computer Engineering</strong> at Northeastern University, joining the SINRG lab <span class="u-tag">milestone</span></div></div>
+<div class="u-item rv"><div class="u-date">Oct 2025</div><div class="u-text">Submitted paper to <strong>IEEE Transactions on Human-Machine Systems</strong> on AI-assisted spatial awareness <span class="u-tag">submission</span></div></div>
+<div class="u-item rv"><div class="u-date">May 2025</div><div class="u-text">Graduated from <strong>Norwich University</strong> with B.S. in Electrical & Computer Engineering <span class="u-tag">milestone</span></div></div>
+<div class="u-item rv"><div class="u-date">Feb 2025</div><div class="u-text">Started as <strong>Software Engineer</strong> at Atombeam Technologies <span class="u-tag">industry</span></div></div>
+<div class="u-item rv"><div class="u-date">Feb 2025</div><div class="u-text">Received <strong>Student Engineer of the Year</strong> award at Norwich University <span class="u-tag">award</span></div></div>
+<div class="u-item rv"><div class="u-date">Nov 2024</div><div class="u-text">Published paper on <strong>NLP-based digital forensics</strong> in Future Internet <span class="u-tag">publication</span></div></div>
+<div class="u-item rv"><div class="u-date">Jun 2024</div><div class="u-text">Presented at <strong>FYEE 2024</strong> in Boston on NLP-based survey analysis <span class="u-tag">talk</span></div></div>
+<div class="u-item rv"><div class="u-date">May 2024</div><div class="u-text">Started <strong>SRE internship</strong> at Walmart Advanced Systems & Robotics <span class="u-tag">industry</span></div></div>
+<div class="u-item rv"><div class="u-date">Aug 2023</div><div class="u-text">Published paper on <strong>misinformation detection</strong> using Bi-LSTM and genetic algorithms in Electronics <span class="u-tag">publication</span></div></div>
+</div>
+</div></section>
+
 <section class="contact" id="contact">
-<div class="sh-label">07 – Contact</div>
+<div class="sh-label">08 – Contact</div>
 <h2 class="sh-title">Let's <em>connect</em></h2>
 <p class="contact-sub">Open to research collaborations, spatial intelligence, and the future of wearable sensing.</p>
 <div class="contact-links">
