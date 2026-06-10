@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Majd Khalaf</title>
+<meta name="description" content="Majd Khalaf, Ph.D. student in Computer Engineering at Northeastern University (SINRG), researching wearable computing, wireless sensing, and spatial intelligence.">
+<link rel="icon" type="image/png" href="majd.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Majd Khalaf">
+<meta property="og:description" content="Ph.D. student in Computer Engineering at Northeastern (SINRG). Wearable computing, wireless sensing, and spatial intelligence.">
+<!-- og:image should be an absolute URL once deployed, e.g. https://yourdomain/majd.png -->
+<meta property="og:image" content="majd.png">
+<meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -51,6 +59,10 @@ main{max-width:var(--maxw);margin:0 auto;padding:0 1.5rem}
 .links{display:flex;flex-wrap:wrap;gap:.4rem .9rem;font-size:.92rem}
 .links a{display:inline-flex;align-items:center;gap:.35rem;color:var(--link)}
 .links a::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--link);opacity:.55}
+.links a.ico::before{display:none}
+.links a.ico{opacity:.85;transition:opacity .2s,transform .2s}
+.links a.ico:hover{opacity:1;text-decoration:none;transform:translateY(-1px)}
+.links a.ico svg{width:20px;height:20px;fill:currentColor;display:block}
 
 /* sections */
 section{padding:1.7rem 0;border-top:1px solid var(--rule)}
@@ -96,8 +108,23 @@ p:last-child{margin-bottom:0}
 .badge{display:inline-block;font-size:.72rem;font-weight:700;padding:.08rem .5rem;border-radius:4px;margin-left:.4rem;vertical-align:middle;letter-spacing:.02em}
 .badge.b{background:var(--badge-bg);border:1px solid var(--badge-bd);color:var(--link)}
 .badge.r{background:var(--review-bg);border:1px solid var(--review-bd);color:var(--review-tx)}
-.pub-links{font-size:.88rem;margin-top:.2rem}
-.pub-links a{margin-right:.7rem}
+.pub-links{margin-top:.6rem;display:flex;flex-wrap:wrap;gap:.45rem;align-items:center}
+.pub-links a,.pub-links .bib>summary{font-size:.74rem;font-weight:700;letter-spacing:.02em;padding:.24rem .62rem;border:1px solid var(--badge-bd);background:var(--badge-bg);color:var(--link);border-radius:5px;text-decoration:none;cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:.3rem;transition:background .2s,border-color .2s,color .2s}
+.pub-links a:hover,.pub-links .bib>summary:hover{background:var(--link);color:#fff;border-color:var(--link);text-decoration:none}
+.pub-links .bib>summary::-webkit-details-marker{display:none}
+.pub-links .bib[open]>summary{background:var(--link);color:#fff;border-color:var(--link)}
+.pub-links .bib[open]{flex-basis:100%}
+.pub-links .req{color:var(--review-tx);background:var(--review-bg);border-color:var(--review-bd)}
+.pub-links .req:hover{background:var(--review-tx);color:#fff;border-color:var(--review-tx)}
+.bibbox{margin-top:.5rem;background:#f6f7f9;border:1px solid var(--rule);border-radius:6px;padding:.7rem .9rem;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.72rem;line-height:1.55;color:#333;white-space:pre-wrap;overflow-x:auto}
+/* animations */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:none}
+.head{animation:headIn .75s cubic-bezier(.22,1,.36,1) both}
+@keyframes headIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.thumb.has-img img{transition:transform .45s ease}
+.pub:hover .thumb.has-img img{transform:scale(1.05)}
+@media(prefers-reduced-motion:reduce){.reveal,.head{opacity:1!important;transform:none!important;animation:none!important;transition:none!important}}
 
 /* education / experience */
 .entry{display:grid;grid-template-columns:1fr auto;gap:.6rem 1.5rem;padding:.6rem 0;border-bottom:1px dashed var(--rule)}
@@ -163,7 +190,8 @@ footer a{color:var(--link)}
       <div class="head-advisor">Advised by <a href="https://mallesham.com/" target="_blank">Prof. Mallesham Dasari</a></div>
       <div class="links">
         <a href="mailto:khalaf.m@northeastern.edu">khalaf.m@northeastern.edu</a>
-        <a href="https://www.linkedin.com/in/majd-khalaf-b3313222a/" target="_blank">LinkedIn</a>
+        <a class="ico" href="https://scholar.google.com/citations?user=mO5VtjEAAAAJ&hl=en" target="_blank" aria-label="Google Scholar" title="Google Scholar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg></a>
+        <a class="ico" href="https://www.linkedin.com/in/majd-khalaf-b3313222a/" target="_blank" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg></a>
         <a href="https://sinrg.org/" target="_blank">Lab</a>
         <a href="Resume_Khalaf_Majd_06_10_2026.pdf" target="_blank">CV</a>
       </div>
@@ -228,7 +256,7 @@ footer a{color:var(--link)}
         <div class="pub-t">Capacitive Eye Tracking for Low-Power Smart Glasses <span class="badge r">Under Review</span></div>
         <div class="pub-a"><span class="me">M. Khalaf</span>, et al.</div>
         <div class="pub-v"><i>Under submission</i> · ACM SenSys 2026</div>
-        <div class="pub-links">Draft available on request: <a href="mailto:khalaf.m@northeastern.edu">khalaf.m@northeastern.edu</a></div>
+        <div class="pub-links"><a class="req" href="mailto:khalaf.m@northeastern.edu" title="Request a draft">✉ Draft on request: khalaf.m@northeastern.edu</a></div>
       </div>
     </div>
 
@@ -238,7 +266,7 @@ footer a{color:var(--link)}
         <div class="pub-t">Multimodal Traffic Analysis in Wearable XR and AI Glasses <span class="badge r">Under Review</span></div>
         <div class="pub-a"><span class="me">M. Khalaf</span>, et al.</div>
         <div class="pub-v"><i>Under submission</i> · ACM MobiCom 2026</div>
-        <div class="pub-links">Draft available on request: <a href="mailto:khalaf.m@northeastern.edu">khalaf.m@northeastern.edu</a></div>
+        <div class="pub-links"><a class="req" href="mailto:khalaf.m@northeastern.edu" title="Request a draft">✉ Draft on request: khalaf.m@northeastern.edu</a></div>
       </div>
     </div>
 
@@ -248,19 +276,40 @@ footer a{color:var(--link)}
         <div class="pub-t">AI-Assisted Spatial Awareness for Accessibility <span class="badge r">Under Review</span></div>
         <div class="pub-a"><span class="me">M. Khalaf</span>, et al.</div>
         <div class="pub-v"><i>Under review</i> · IEEE Transactions on Human-Machine Systems</div>
-        <div class="pub-links">Draft available on request: <a href="mailto:khalaf.m@northeastern.edu">khalaf.m@northeastern.edu</a></div>
+        <div class="pub-links"><a class="req" href="mailto:khalaf.m@northeastern.edu" title="Request a draft">✉ Draft on request: khalaf.m@northeastern.edu</a></div>
       </div>
     </div>
 
     <div class="pub-sub">Published</div>
 
     <div class="pub">
-      <div class="thumb th4"><span class="tv">Future Internet</span><span class="tt">2024</span></div>
+      <div class="thumb th2"><span class="tv">ASEE '25</span><span class="tt">NLP Reflections</span></div>
+      <div>
+        <div class="pub-t">Future-Ready Students: Validating the Use of Natural Language Processing to Analyze Student Reflections on a Remote Learning Group Project</div>
+        <div class="pub-a"><span class="me">M. Khalaf</span>, T. C. Olukanni, D. M. Feinauer, M. Cross, A. Al Bataineh</div>
+        <div class="pub-v">ASEE Annual Conference &amp; Exposition, 2025</div>
+        <div class="pub-links"><details class="bib"><summary>BibTeX</summary><div class="bibbox">@inproceedings{khalaf2025validating,
+  title     = {Future-Ready Students: Validating the Use of Natural Language Processing to Analyze Student Reflections on a Remote Learning Group Project},
+  author    = {Khalaf, M. and Olukanni, T. C. and Feinauer, D. M. and Cross, M. and Al Bataineh, A.},
+  booktitle = {ASEE Annual Conference and Exposition},
+  year      = {2025}
+}</div></details></div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="thumb has-img"><img src="futureinternet.png" alt="Identifying persons of interest in digital forensics using NLP-based AI"></div>
       <div>
         <div class="pub-t">Identifying Persons of Interest in Digital Forensics Using NLP-Based AI</div>
         <div class="pub-a">J. Adkins, A. Bataineh, <span class="me">M. Khalaf</span></div>
         <div class="pub-v"><i>Future Internet</i>, 16(11):426, 2024</div>
-        <div class="pub-links"><a href="https://doi.org/10.3390/fi16110426" target="_blank">DOI</a></div>
+        <div class="pub-links"><a href="https://doi.org/10.3390/fi16110426" target="_blank">DOI</a><details class="bib"><summary>BibTeX</summary><div class="bibbox">@article{khalaf2024forensics,
+  title   = {Identifying Persons of Interest in Digital Forensics Using NLP-Based AI},
+  author  = {Adkins, J. and Bataineh, A. and Khalaf, M.},
+  journal = {Future Internet},
+  volume  = {16}, number = {11}, pages = {426}, year = {2024},
+  doi     = {10.3390/fi16110426}
+}</div></details></div>
       </div>
     </div>
 
@@ -270,7 +319,28 @@ footer a{color:var(--link)}
         <div class="pub-t">Future-Ready Students: Survey Analysis Utilizing Natural Language Processing</div>
         <div class="pub-a">T. C. Olukanni, <span class="me">M. Khalaf</span>, M. Cross, D. M. Feinauer, A. Al Bataineh</div>
         <div class="pub-v">ASEE / IEEE FYEE 2024</div>
-        <div class="pub-links"><a href="https://doi.org/10.18260/1-2--48593" target="_blank">DOI</a></div>
+        <div class="pub-links"><a href="https://doi.org/10.18260/1-2--48593" target="_blank">DOI</a><details class="bib"><summary>BibTeX</summary><div class="bibbox">@inproceedings{khalaf2024futureready,
+  title     = {Future-Ready Students: Survey Analysis Utilizing Natural Language Processing},
+  author    = {Olukanni, T. C. and Khalaf, M. and Cross, M. and Feinauer, D. M. and Al Bataineh, A.},
+  booktitle = {ASEE/IEEE First-Year Engineering Experience (FYEE) Conference},
+  year      = {2024},
+  doi       = {10.18260/1-2--48593}
+}</div></details></div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="thumb th6"><span class="tv">FYEE '24</span><span class="tt">Remote Collaboration</span></div>
+      <div>
+        <div class="pub-t">Future-Ready Students: Providing Opportunities for Remote Collaboration on an Engineering Design Project</div>
+        <div class="pub-a"><span class="me">M. Khalaf</span>, D. M. Feinauer, M. Cross</div>
+        <div class="pub-v">ASEE / IEEE FYEE 2024</div>
+        <div class="pub-links"><details class="bib"><summary>BibTeX</summary><div class="bibbox">@inproceedings{khalaf2024remote,
+  title     = {Future-Ready Students: Providing Opportunities for Remote Collaboration on an Engineering Design Project},
+  author    = {Khalaf, M. and Feinauer, D. M. and Cross, M.},
+  booktitle = {ASEE/IEEE First-Year Engineering Experience (FYEE) Conference},
+  year      = {2024}
+}</div></details></div>
       </div>
     </div>
 
@@ -280,7 +350,13 @@ footer a{color:var(--link)}
         <div class="pub-t">Advanced Misinformation Detection: A Bi-LSTM Model Optimized by Genetic Algorithms</div>
         <div class="pub-a">A. Al Bataineh, V. Reyes, T. Olukanni, <span class="me">M. Khalaf</span>, A. Vibho, R. Pedyuk</div>
         <div class="pub-v"><i>Electronics</i>, 12(15):3250, 2023</div>
-        <div class="pub-links"><a href="https://doi.org/10.3390/electronics12153250" target="_blank">DOI</a></div>
+        <div class="pub-links"><a href="https://doi.org/10.3390/electronics12153250" target="_blank">DOI</a><details class="bib"><summary>BibTeX</summary><div class="bibbox">@article{albataineh2023misinformation,
+  title   = {Advanced Misinformation Detection: A Bi-LSTM Model Optimized by Genetic Algorithms},
+  author  = {Al Bataineh, A. and Reyes, V. and Olukanni, T. and Khalaf, M. and Vibho, A. and Pedyuk, R.},
+  journal = {Electronics},
+  volume  = {12}, number = {15}, pages = {3250}, year = {2023},
+  doi     = {10.3390/electronics12153250}
+}</div></details></div>
       </div>
     </div>
   </section>
@@ -410,6 +486,13 @@ footer a{color:var(--link)}
 const secs=[...document.querySelectorAll('main section')],links=[...document.querySelectorAll('.nav-in a[href^="#"]')];
 function onScroll(){let cur='';secs.forEach(s=>{if(scrollY>=s.offsetTop-90)cur=s.id});links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur))}
 addEventListener('scroll',onScroll);onScroll();
+
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+  const els=[...document.querySelectorAll('.sec, .about-text p, .research p, .rlist li, .pub, .entry, .news li, .honors li, .skills div')];
+  els.forEach(el=>{el.classList.add('reveal');let i=0,p=el.previousElementSibling;while(p){if(p.classList&&p.classList.contains('reveal'))i++;p=p.previousElementSibling;}el.style.transitionDelay=Math.min(i,7)*55+'ms';});
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(el=>io.observe(el));
+}
 </script>
 </body>
 </html>
