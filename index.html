@@ -3,353 +3,413 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Majd Khalaf – Spatial Intelligence Researcher</title>
+<title>Majd Khalaf</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#1a2236;--bg-card:#222d44;--text:#e8ecf4;--text-mid:#9aa3bc;--text-dim:#6b7490;--accent:#00d4aa;--accent2:#00b4d8;--warm:#e8a44a;--border:rgba(255,255,255,.08);--border-h:rgba(0,212,170,.22)}
+:root{
+  --text:#222;
+  --muted:#555;
+  --faint:#888;
+  --link:#0b5ed7;
+  --link-h:#06388a;
+  --rule:#e4e4e4;
+  --badge-bg:#eaf1fb;
+  --badge-bd:#c5d8f3;
+  --review-bg:#fbf0e7;
+  --review-bd:#eed3bb;
+  --review-tx:#a85e22;
+  --maxw:820px;
+}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.7}
-::selection{background:var(--accent);color:var(--bg)}
-canvas#bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Lato',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--text);background:#fff;line-height:1.7;font-size:17px;font-weight:400}
+a{color:var(--link);text-decoration:none}
+a:hover{color:var(--link-h);text-decoration:underline}
+::selection{background:#cfe0fb}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 3rem;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(16px);background:rgba(26,34,54,.75);border-bottom:1px solid var(--border);transition:background .3s,padding .3s}
-nav.scrolled{background:rgba(26,34,54,.95);padding:.75rem 3rem}
-.nav-logo{font-family:'DM Mono',monospace;font-size:.82rem;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;font-weight:500}
-.nav-logo span{color:var(--text-dim);font-weight:300}
-.nav-links{display:flex;gap:2.2rem;list-style:none}
-.nav-links a{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mid);text-decoration:none;transition:color .25s;position:relative}
-.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--accent);transition:width .25s}
-.nav-links a:hover,.nav-links a.active{color:var(--accent)}
-.nav-links a:hover::after,.nav-links a.active::after{width:100%}
-.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:.5rem}
-.nav-toggle span{display:block;width:20px;height:1.5px;background:var(--text-mid);margin:5px 0;transition:all .3s}
-.nav-toggle.on span:nth-child(1){transform:rotate(45deg) translate(4px,5px)}
-.nav-toggle.on span:nth-child(2){opacity:0}
-.nav-toggle.on span:nth-child(3){transform:rotate(-45deg) translate(4px,-5px)}
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+.nav-in{max-width:var(--maxw);margin:0 auto;padding:.7rem 1.5rem;display:flex;flex-wrap:wrap;gap:.2rem 1.4rem;align-items:center}
+.nav-name{font-weight:700;margin-right:auto;font-size:.98rem}
+.nav-in a{color:var(--muted);font-size:.86rem;text-decoration:none;padding:.2rem 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.nav-in a:hover,.nav-in a.active{color:var(--link);border-bottom-color:var(--link)}
+.nav-name a{border:none}
 
-.section{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;padding:7rem 3rem}
-.inner{max-width:1100px;margin:0 auto;width:100%}
+main{max-width:var(--maxw);margin:0 auto;padding:0 1.5rem}
 
-.hero{min-height:100vh;display:flex;align-items:center;position:relative}
-.hero-inner{max-width:1100px;margin:0 auto;width:100%;padding:0 3rem;position:relative;z-index:2}
-.hero-label{font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;opacity:0;animation:up .7s ease .3s forwards}
-.hero-label::before{content:'';display:inline-block;width:1.5rem;height:1px;background:var(--accent);margin-right:.8rem;vertical-align:middle}
-.hero-name{font-family:'Instrument Serif',serif;font-size:clamp(3rem,7vw,6.5rem);font-weight:400;line-height:1.08;margin-bottom:1.6rem;opacity:0;animation:up .8s ease .45s forwards}
-.hero-name em{font-style:italic;color:var(--accent)}
-.hero-desc{font-size:1.08rem;font-weight:300;color:var(--text-mid);max-width:580px;line-height:1.85;margin-bottom:2.5rem;opacity:0;animation:up .7s ease .6s forwards}
-.hero-meta{display:flex;gap:2.8rem;flex-wrap:wrap;opacity:0;animation:up .7s ease .75s forwards}
-.meta-item{display:flex;flex-direction:column;gap:.2rem}
-.meta-label{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim)}
-.meta-val{font-size:.88rem;color:var(--text-mid)}
-.meta-val a{color:var(--accent);text-decoration:none;transition:opacity .2s}
-.meta-val a:hover{opacity:.75}
-@keyframes up{to{opacity:1;transform:translateY(0)}}
-.hero-label,.hero-name,.hero-desc,.hero-meta{transform:translateY(24px)}
+/* header */
+.head{display:flex;gap:2.2rem;align-items:flex-start;padding:3rem 0 2.4rem}
+.head-photo{width:178px;flex-shrink:0}
+.head-photo img{width:178px;height:178px;border-radius:50%;object-fit:cover;object-position:center 18%;border:1px solid var(--rule)}
+.head-body h1{font-family:'Lora',serif;font-size:2.15rem;font-weight:600;line-height:1.15;margin-bottom:.35rem}
+.head-role{font-size:1.05rem;color:var(--text);margin-bottom:.15rem}
+.head-aff{color:var(--muted);font-size:1rem;margin-bottom:.2rem}
+.head-aff a{font-weight:700}
+.head-advisor{color:var(--muted);font-size:.98rem;margin-bottom:1rem}
+.links{display:flex;flex-wrap:wrap;gap:.4rem .9rem;font-size:.92rem}
+.links a{display:inline-flex;align-items:center;gap:.35rem;color:var(--link)}
+.links a::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--link);opacity:.55}
 
-.sh{margin-bottom:3.5rem}
-.sh-label{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:.8rem;display:flex;align-items:center;gap:.8rem}
-.sh-label::before{content:'';width:1.5rem;height:1px;background:var(--accent)}
-.sh-title{font-family:'Instrument Serif',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:400;line-height:1.2}
-.sh-title em{font-style:italic;color:var(--accent)}
+/* sections */
+section{padding:1.7rem 0;border-top:1px solid var(--rule)}
+h2.sec{font-family:'Lora',serif;font-size:1.5rem;font-weight:600;margin-bottom:1rem;scroll-margin-top:4rem}
+p{margin-bottom:.9rem}
+p:last-child{margin-bottom:0}
+.muted{color:var(--muted)}
 
-.hero-grid{display:grid;grid-template-columns:1fr auto;gap:4rem;align-items:center}
-.hero-photo{width:180px;height:180px;border-radius:50%;overflow:hidden;border:3px solid rgba(0,212,170,.15);opacity:0;animation:up .7s ease .9s forwards;transform:translateY(24px);position:relative;flex-shrink:0;box-shadow:0 8px 30px rgba(0,0,0,.25)}
-.hero-photo::after{content:'';position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(0,212,170,.08);pointer-events:none}
-.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block}
+/* news */
+.news{list-style:none}
+.news li{display:grid;grid-template-columns:96px 1fr;gap:1rem;padding:.4rem 0;font-size:.97rem;align-items:baseline}
+.news .nd{color:var(--faint);font-size:.85rem;font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+.news .nt strong{font-weight:700}
+.news-more{margin-top:.6rem;font-size:.88rem}
 
-.mission{position:relative;z-index:1;padding:6rem 3rem}
-.mission-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:3px 1fr;gap:2.5rem;align-items:start}
-.mission-line{background:linear-gradient(to bottom,var(--accent),var(--accent2));border-radius:2px;height:100%}
-.mission-content{}
-.mission-label{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
-.mission-quote{font-family:'Instrument Serif',serif;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:400;line-height:1.5;margin-bottom:1.8rem;color:var(--text)}
-.mission-quote em{font-style:italic;color:var(--accent)}
-.mission-body{font-size:.98rem;color:var(--text-mid);line-height:1.9;font-weight:300;max-width:720px}
-.mission-body p+p{margin-top:1.3rem}
+/* research */
+.research p{margin-bottom:.7rem}
+.rlist{list-style:none}
+.rlist li{padding:.35rem 0 .35rem 1.2rem;position:relative;color:var(--muted)}
+.rlist li::before{content:'▸';position:absolute;left:0;color:var(--link)}
+.rlist b{color:var(--text);font-weight:700}
 
-.about-text{font-size:1.02rem;color:var(--text-mid);line-height:1.9;font-weight:300;max-width:780px}
-.about-text p+p{margin-top:1.4rem}
-.about-text a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(0,212,170,.25);transition:border-color .2s}
-.about-text a:hover{border-bottom-color:var(--accent)}
+/* publications */
+.pub-sub{font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin:1.3rem 0 .7rem}
+.pub-sub:first-child{margin-top:0}
+.pub{display:grid;grid-template-columns:360px 1fr;gap:1.7rem;padding:1.4rem 0;align-items:start}
+.thumb{width:360px;height:244px;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;border:1px solid rgba(0,0,0,.06);overflow:hidden;text-align:center;padding:.5rem}
+.thumb .tv{font-size:.72rem;font-weight:700;letter-spacing:.03em}
+.thumb .tt{font-size:.56rem;opacity:.85;margin-top:.2rem;line-height:1.25}
+.thumb.has-img{padding:0;background:#fff}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.th1{background:linear-gradient(135deg,#1f6f8b,#0f4c5c)}
+.th2{background:linear-gradient(135deg,#3a5a98,#22386b)}
+.th3{background:linear-gradient(135deg,#6a7b8c,#414f5e)}
+.th4{background:linear-gradient(135deg,#7a8a5a,#4e5a38)}
+.th5{background:linear-gradient(135deg,#9a6a4a,#6e4a30)}
+.th6{background:linear-gradient(135deg,#7a5a8a,#4e3a5e)}
+.pub-t{font-weight:700;line-height:1.4;margin-bottom:.2rem;font-size:1.02rem}
+.pub-a{color:var(--muted);font-size:.94rem;margin-bottom:.15rem}
+.pub-a .me{color:var(--text);font-weight:700}
+.pub-v{font-size:.92rem;color:var(--muted)}
+.pub-v i{color:var(--text);font-style:italic}
+.badge{display:inline-block;font-size:.72rem;font-weight:700;padding:.08rem .5rem;border-radius:4px;margin-left:.4rem;vertical-align:middle;letter-spacing:.02em}
+.badge.b{background:var(--badge-bg);border:1px solid var(--badge-bd);color:var(--link)}
+.badge.r{background:var(--review-bg);border:1px solid var(--review-bd);color:var(--review-tx)}
+.pub-links{font-size:.88rem;margin-top:.2rem}
+.pub-links a{margin-right:.7rem}
 
-.r-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-.r-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:2.2rem;transition:border-color .3s,transform .3s,box-shadow .3s}
-.r-card:hover{border-color:var(--border-h);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,212,170,.05)}
-.r-card h3{font-size:1.05rem;font-weight:600;margin-bottom:.7rem}
-.r-card p{font-size:.87rem;color:var(--text-mid);line-height:1.7;font-weight:300}
-.r-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
-.r-tag{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.04em;padding:.25rem .6rem;border-radius:100px;background:rgba(0,212,170,.06);border:1px solid rgba(0,212,170,.14);color:var(--accent)}
+/* education / experience */
+.entry{display:grid;grid-template-columns:1fr auto;gap:.6rem 1.5rem;padding:.6rem 0;border-bottom:1px dashed var(--rule)}
+.entry:last-child{border-bottom:none}
+.entry .e-main b{font-weight:700}
+.entry .e-sub{color:var(--muted);font-size:.95rem}
+.entry .e-adv{color:var(--muted);font-size:.92rem}
+.entry .e-date{color:var(--faint);font-size:.88rem;white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums}
 
-.pub{padding:1.6rem 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:110px 1fr;gap:1.8rem;align-items:start;transition:background .25s}
-.pub:first-child{border-top:1px solid var(--border)}
-.pub:hover{background:rgba(0,212,170,.02)}
-.pub-badge{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;padding:.3rem .7rem;border-radius:100px;text-align:center;white-space:nowrap}
-.pub-badge.published{background:rgba(0,212,170,.1);color:var(--accent);border:1px solid rgba(0,212,170,.2)}
-.pub-badge.review{background:rgba(0,180,216,.1);color:var(--accent2);border:1px solid rgba(0,180,216,.2)}
-.pub-badge.prep{background:rgba(232,164,74,.1);color:var(--warm);border:1px solid rgba(232,164,74,.2)}
-.pub h4{font-size:.95rem;font-weight:500;margin-bottom:.35rem;line-height:1.5}
-.pub .authors{font-size:.83rem;color:var(--text-mid);font-weight:300;margin-bottom:.25rem}
-.pub .authors strong{color:var(--accent);font-weight:500}
-.pub .venue{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--text-dim)}
-.pub .venue a{color:var(--accent);text-decoration:none}
+/* honors */
+.honors{list-style:none}
+.honors li{padding:.3rem 0 .3rem 1.4rem;position:relative;color:var(--text)}
+.honors li::before{content:'🏅';position:absolute;left:0;font-size:.9rem}
+.honors .hy{color:var(--faint);font-size:.88rem;margin-left:.3rem}
 
-.timeline{position:relative;padding-left:2.5rem}
-.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--accent),var(--border) 70%,transparent)}
-.t-item{position:relative;padding-bottom:2.5rem}
-.t-item:last-child{padding-bottom:0}
-.t-item::before{content:'';position:absolute;left:-2.5rem;top:.55rem;width:8px;height:8px;border-radius:50%;background:var(--bg);border:2px solid var(--accent);transform:translateX(-3.5px)}
-.t-date{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.08em;color:var(--text-dim);margin-bottom:.4rem}
-.t-role{font-size:1.08rem;font-weight:600;margin-bottom:.2rem}
-.t-co{font-size:.92rem;color:var(--accent);margin-bottom:.2rem}
-.t-loc{font-size:.78rem;color:var(--text-dim);margin-bottom:.7rem}
-.t-desc{font-size:.86rem;color:var(--text-mid);font-weight:300;line-height:1.7}
+/* skills */
+.skills{display:grid;grid-template-columns:1fr 1fr;gap:.4rem 2rem}
+.skills div{font-size:.96rem;padding:.25rem 0}
+.skills b{font-weight:700}
 
-.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
-.edu{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:2.2rem;transition:border-color .3s,transform .3s}
-.edu:hover{border-color:var(--border-h);transform:translateY(-2px)}
-.edu-deg{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.7rem}
-.edu-school{font-size:1.12rem;font-weight:600;margin-bottom:.2rem}
-.edu-field{font-size:.88rem;color:var(--text-mid);margin-bottom:.2rem}
-.edu-date{font-size:.78rem;color:var(--text-dim);margin-bottom:.8rem}
-.edu-adv{font-size:.84rem;color:var(--text-mid);font-weight:300}
-.edu-adv a{color:var(--accent);text-decoration:none}
-.edu-honors{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border)}
-.edu-hon{font-size:.8rem;color:var(--text-mid);font-weight:300;padding:.2rem 0;display:flex;align-items:baseline;gap:.45rem}
-.edu-hon::before{content:'◆';font-size:.35rem;color:var(--accent);flex-shrink:0}
+footer{border-top:1px solid var(--rule);padding:1.8rem 0 2.6rem;font-size:.85rem;color:var(--faint);text-align:center}
+footer a{color:var(--link)}
 
-.sk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-.sk{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.8rem;transition:border-color .3s}
-.sk:hover{border-color:var(--border-h)}
-.sk-title{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
-.sk-tags{display:flex;flex-wrap:wrap;gap:.4rem}
-.sk-t{font-size:.76rem;padding:.3rem .7rem;border-radius:6px;background:rgba(255,255,255,.03);border:1px solid var(--border);color:var(--text-mid);font-weight:300;transition:all .25s}
-.sk-t:hover{background:rgba(0,212,170,.06);border-color:var(--border-h);color:var(--accent)}
-
-.contact{text-align:center;padding:8rem 3rem;position:relative;z-index:1}
-
-.updates-tl{position:relative;padding-left:2.5rem}
-.updates-tl::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--accent),var(--border) 80%,transparent)}
-.u-item{position:relative;padding-bottom:2rem}
-.u-item:last-child{padding-bottom:0}
-.u-item::before{content:'';position:absolute;left:-2.5rem;top:.45rem;width:8px;height:8px;border-radius:50%;background:var(--bg);border:2px solid var(--accent);transform:translateX(-3.5px)}
-.u-date{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.08em;color:var(--text-dim);margin-bottom:.3rem}
-.u-text{font-size:.92rem;color:var(--text-mid);font-weight:300;line-height:1.6}
-.u-text strong{color:var(--text);font-weight:500}
-.u-tag{display:inline-block;font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.04em;padding:.15rem .5rem;border-radius:100px;background:rgba(0,158,126,.06);border:1px solid rgba(0,158,126,.15);color:var(--accent);margin-left:.4rem;vertical-align:middle}
-.contact .sh-label{justify-content:center}
-.contact .sh-title{margin-top:.8rem;margin-bottom:1.2rem}
-.contact-sub{font-size:1rem;color:var(--text-mid);font-weight:300;margin-bottom:2.5rem;max-width:460px;margin-left:auto;margin-right:auto}
-.contact-links{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap}
-.c-link{font-family:'DM Mono',monospace;font-size:.76rem;letter-spacing:.06em;padding:.85rem 2rem;border-radius:100px;text-decoration:none;transition:all .3s;border:1px solid var(--border);color:var(--text-mid);background:var(--bg-card)}
-.c-link:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,212,170,.1)}
-.c-link.pri{background:var(--accent);color:var(--bg);border-color:var(--accent);font-weight:500}
-.c-link.pri:hover{background:#00e8bb;box-shadow:0 8px 28px rgba(0,212,170,.2);color:var(--bg)}
-
-footer{position:relative;z-index:1;text-align:center;padding:1.8rem;border-top:1px solid var(--border)}
-footer p{font-family:'DM Mono',monospace;font-size:.62rem;color:var(--text-dim);letter-spacing:.08em}
-footer a{color:var(--accent);text-decoration:none}
-
-.rv{opacity:0;transform:translateY(32px);transition:opacity .7s cubic-bezier(.23,1,.32,1),transform .7s cubic-bezier(.23,1,.32,1)}
-.rv.vis{opacity:1;transform:translateY(0)}
-.rv-d1{transition-delay:.1s}.rv-d2{transition-delay:.2s}.rv-d3{transition-delay:.3s}
-
-@media(max-width:900px){
-nav{padding:.9rem 1.5rem}.section{padding:5rem 1.5rem}.hero-inner{padding:0 1.5rem}
-.r-grid,.edu-grid,.sk-grid{grid-template-columns:1fr}.pub{grid-template-columns:1fr;gap:.6rem}
-.hero-name{font-size:clamp(2.4rem,9vw,4rem)}.hero-meta{gap:1.8rem}
-.hero-grid{grid-template-columns:1fr;text-align:center}
-.hero-photo{width:120px;height:120px;margin:0 auto 1.5rem}
-.hero-label{justify-content:center}
-.hero-desc{margin-left:auto;margin-right:auto}
-.hero-meta{justify-content:center}
-.mission{padding:4rem 1.5rem}
-.mission-inner{gap:1.5rem}
-.nav-toggle{display:block}
-.nav-links{position:fixed;top:0;right:-100%;width:260px;height:100vh;background:var(--bg);flex-direction:column;padding:5rem 2rem;gap:1.5rem;transition:right .35s ease;border-left:1px solid var(--border)}
-.nav-links.open{right:0}
+@media(max-width:640px){
+  body{font-size:16px}
+  .head{flex-direction:column;align-items:center;text-align:center;gap:1.3rem;padding:2.2rem 0 1.8rem}
+  .links{justify-content:center}
+  .news li{grid-template-columns:1fr;gap:.1rem}
+  .news .nd{font-size:.8rem}
+  .pub{grid-template-columns:1fr;gap:.7rem}
+  .thumb{width:100%;height:270px}
+  .entry{grid-template-columns:1fr}
+  .entry .e-date{text-align:left}
+  .skills{grid-template-columns:1fr}
+  .nav-name{width:100%;margin-bottom:.2rem}
 }
 </style>
 </head>
 <body>
-<canvas id="bg"></canvas>
-<nav id="nav">
-<div class="nav-logo">Majd Khalaf <span>// SINRG</span></div>
-<button class="nav-toggle" id="nt" aria-label="Menu"><span></span><span></span><span></span></button>
-<ul class="nav-links" id="nl">
-<li><a href="#about">About</a></li><li><a href="#research">Research</a></li><li><a href="#publications">Publications</a></li><li><a href="#experience">Experience</a></li><li><a href="#education">Education</a></li><li><a href="#updates">Updates</a></li><li><a href="#contact">Contact</a></li>
-</ul>
+
+<nav>
+  <div class="nav-in">
+    <span class="nav-name"><a href="#top">Majd Khalaf</a></span>
+    <a href="#about">About</a>
+    <a href="#news">News</a>
+    <a href="#research">Research</a>
+    <a href="#publications">Publications</a>
+    <a href="#conferences">Conferences</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#honors">Honors</a>
+  </div>
 </nav>
 
-<section class="hero" id="hero">
-<div class="hero-inner">
-<div class="hero-grid">
-<div>
-<div class="hero-label">Spatial Intelligence Researcher</div>
-<h1 class="hero-name">Majd <em>Khalaf</em></h1>
-<p class="hero-desc">I develop low-power spatial intelligence systems using wearable and wireless sensing for human-environment interaction.</p>
-<div class="hero-meta">
-<div class="meta-item"><span class="meta-label">Affiliation</span><span class="meta-val"><a href="https://sinrg.org/" target="_blank">SINRG</a> · Northeastern University</span></div>
-<div class="meta-item"><span class="meta-label">Degree</span><span class="meta-val">Ph.D. in Computer Engineering</span></div>
-<div class="meta-item"><span class="meta-label">Advisor</span><span class="meta-val"><a href="https://sinrg.org/" target="_blank">Prof. Mallesham Dasari</a></span></div>
-</div>
-</div>
-<div class="hero-photo"><img src="majd.png" alt="Majd Khalaf"></div>
-</div>
-</div>
-</section>
+<main id="top">
 
-<section class="section" id="about"><div class="inner">
-<div class="sh rv"><div class="sh-label">01 – About</div><h2 class="sh-title">Low-power intelligent sensing for <em>human-centered</em> environments</h2></div>
-<div class="about-text rv rv-d1">
-<p>I am a Ph.D. student in Computer Engineering at Northeastern University, working within the <a href="https://sinrg.org/" target="_blank">Spatial Intelligence Research Group (SINRG)</a> under Prof. Mallesham Dasari. My research sits at the intersection of wearable computing, wireless sensing, and edge intelligence, focused on building systems that perceive and reason about physical space with minimal power budgets.</p>
-<p>I investigate multimodal traffic dynamics in XR and AI glasses, develop capacitive sensing approaches for eye tracking, and design adaptive streaming and bitrate control for immersive content. My work spans Bluetooth, BLE, Wi-Fi Direct, and 5G protocols, always aiming to push the boundary of what lightweight, wearable devices can sense and understand.</p>
-<p>Before starting my Ph.D., I earned my B.S. in Electrical & Computer Engineering from Norwich University (with minors in Mathematics and Computer Science), where I was named Student Engineer of the Year and served as President of Eta Kappa Nu.</p>
-</div>
-</div></section>
+  <header class="head">
+    <div class="head-photo"><img src="majd.png" alt="Majd Khalaf"></div>
+    <div class="head-body">
+      <h1>Majd Khalaf</h1>
+      <div class="head-role">Ph.D. Student, Computer Engineering</div>
+      <div class="head-aff"><a href="https://sinrg.org/" target="_blank">SINRG</a> · Northeastern University</div>
+      <div class="head-advisor">Advised by <a href="https://mallesham.com/" target="_blank">Prof. Mallesham Dasari</a></div>
+      <div class="links">
+        <a href="mailto:khalaf.m@northeastern.edu">khalaf.m@northeastern.edu</a>
+        <a href="https://www.linkedin.com/in/majd-khalaf-b3313222a/" target="_blank">LinkedIn</a>
+        <a href="https://sinrg.org/" target="_blank">Lab</a>
+        <a href="Resume_Khalaf_Majd_06_10_2026.pdf" target="_blank">CV</a>
+      </div>
+    </div>
+  </header>
 
-<section class="mission" id="mission">
-<div class="mission-inner rv">
-<div class="mission-line"></div>
-<div class="mission-content">
-<div class="mission-label">Why This Research Matters</div>
-<div class="mission-quote">The next generation of computing won't live on screens. It will live <em>in the space around us.</em></div>
-<div class="mission-body">
-<p>We carry glasses, watches, and earbuds every day, yet these devices remain largely blind to the spatial context they inhabit. I believe that making them spatially aware at ultra-low power can fundamentally change how people navigate and interact with their environments.</p>
-<p>I've seen how a simple pair of AI-powered glasses can transform mobility for someone with visual impairment, not through cloud-scale compute, but through lightweight, on-device intelligence. The gap between what's possible in a lab and what's deployable on a human body is where my research lives.</p>
-<p>I'm working toward a future where spatial intelligence is as ubiquitous as Wi-Fi: wearable devices that understand proximity, motion, and gaze, enabling safer navigation, more natural interaction, and ambient computing that doesn't demand our constant attention.</p>
-</div>
-</div>
-</div>
-</section>
+  <section id="about">
+    <h2 class="sec">About</h2>
+    <p>I am a Ph.D. student in Computer Engineering at Northeastern University, working in the <a href="https://sinrg.org/" target="_blank">Spatial Intelligence Research Group (SINRG)</a> with <a href="https://mallesham.com/" target="_blank">Prof. Mallesham Dasari</a>. My research is at the intersection of <b>wearable computing</b> and <b>wireless sensing</b>, with a broad interest in <b>spatial intelligence</b>: building systems that help everyday devices understand and interact with the physical world around them.</p>
+    <p>I enjoy working across the full stack, from hardware and embedded systems to wireless networking, signal processing, and machine learning. I am especially drawn to problems where careful systems design can make intelligent sensing practical on small, low-power devices, and to applications that have real impact on people.</p>
+    <p>Before my Ph.D., I earned a B.S. in Electrical &amp; Computer Engineering from Norwich University (minors in Mathematics and Computer Science), where I was named Student Engineer of the Year and served as President of Eta Kappa Nu.</p>
+    <p>I am always open to new research collaborations. If our interests overlap, feel free to reach out at <a href="mailto:khalaf.m@northeastern.edu">khalaf.m@northeastern.edu</a>.</p>
+  </section>
 
-<section class="section" id="research"><div class="inner">
-<div class="sh rv"><div class="sh-label">02 – Research Areas</div><h2 class="sh-title">Sensing the <em>invisible</em> architecture of space</h2></div>
-<div class="r-grid">
-<div class="r-card rv rv-d1"><h3>Wireless Sensing & Communication</h3><p>Understanding how wireless protocols behave in wearable and mobile contexts. Studying traffic patterns, power consumption, and latency across Bluetooth, BLE, Wi-Fi, and 5G to inform the design of next-generation wearable systems.</p><div class="r-tags"><span class="r-tag">Bluetooth/BLE</span><span class="r-tag">Wi-Fi</span><span class="r-tag">5G</span><span class="r-tag">Power Optimization</span></div></div>
-<div class="r-card rv rv-d2"><h3>Wearable Sensing & Spatial Inference</h3><p>Exploring low-power sensing modalities for wearable devices, including novel approaches to gaze estimation and environmental awareness. Focused on making spatial intelligence practical for everyday use, especially for accessibility applications.</p><div class="r-tags"><span class="r-tag">Eye Tracking</span><span class="r-tag">Capacitive Sensing</span><span class="r-tag">Smart Glasses</span><span class="r-tag">Accessibility</span></div></div>
-<div class="r-card rv rv-d3"><h3>Adaptive Streaming & Edge Intelligence</h3><p>Designing systems that deliver immersive content under real-world network constraints. Investigating how edge computation and adaptive algorithms can maintain quality-of-experience for spatially rich media like 3D scenes and XR content.</p><div class="r-tags"><span class="r-tag">Adaptive Bitrate</span><span class="r-tag">XR Streaming</span><span class="r-tag">Edge ML</span><span class="r-tag">QoE</span></div></div>
-</div>
-</div></section>
+  <section id="news">
+    <h2 class="sec">News</h2>
+    <ul class="news">
+      <li><span class="nd">Jun 2026</span><span class="nt">🕶️ Presenting a poster at <strong>AWE USA 2026</strong> (Augmented World Expo), the world's largest XR and spatial computing event, in Long Beach, CA.</span></li>
+      <li><span class="nd">May 2026</span><span class="nt">🔬 Submitted a paper on <strong>capacitive eye tracking</strong> for low-power smart glasses to <strong>ACM SenSys 2026</strong>.</span></li>
+      <li><span class="nd">Apr 2026</span><span class="nt">📡 Submitted a paper on <strong>multimodal traffic analysis</strong> in wearable XR / AI glasses to <strong>ACM MobiCom 2026</strong>.</span></li>
+      <li><span class="nd">Feb 2026</span><span class="nt">🎓 Presented a poster at the <strong>Northeastern COE PhD Research Expo 2026</strong>.</span></li>
+      <li><span class="nd">Oct 2025</span><span class="nt">📝 Submitted a paper on <strong>AI-assisted spatial awareness</strong> for accessibility to <strong>IEEE THMS</strong>.</span></li>
+      <li><span class="nd">Sep 2025</span><span class="nt">🎓 Started my <strong>Ph.D.</strong> in Computer Engineering at Northeastern, joining the <strong>SINRG</strong> lab.</span></li>
+      <li><span class="nd">Jul 2025</span><span class="nt">🛠️ Served as faculty and Resident Assistant at <strong>GIV Engineering</strong> (Governor's Institutes of Vermont), teaching high school students to build solar trackers.</span></li>
+      <li><span class="nd">May 2025</span><span class="nt">🎉 Graduated from <strong>Norwich University</strong> with a B.S. in Electrical &amp; Computer Engineering.</span></li>
+      <li><span class="nd">May 2025</span><span class="nt">🎤 Presented capstone project <strong>AI-VIS</strong> (AI for visually impaired individuals) at the <strong>Vermont Society of Engineers 112th Annual Meeting</strong>.</span></li>
+      <li><span class="nd">Feb 2025</span><span class="nt">🏅 Named <strong>Student Engineer of the Year</strong> at Norwich University.</span></li>
+      <li><span class="nd">Nov 2024</span><span class="nt">📄 Published work on <strong>NLP-based digital forensics</strong> in <i>Future Internet</i>.</span></li>
+      <li><span class="nd">Nov 2024</span><span class="nt">🎟️ Attended the <strong>IEEE-Eta Kappa Nu Student Leadership Conference</strong> in Charlotte, NC.</span></li>
+      <li><span class="nd">Oct 2024</span><span class="nt">🎤 Presented at the <strong>AESH Annual International Conference on Soils, Sediments, Water, and Energy</strong> at UMass Amherst.</span></li>
+      <li><span class="nd">Sep 2024</span><span class="nt">📊 Presented a poster at the <strong>Vermont AOT Research &amp; Innovation Symposium</strong> in Barre, VT.</span></li>
+      <li><span class="nd">Aug 2024</span><span class="nt">🎤 Presented at the <strong>AI Colloquium</strong> hosted by the Norwich University Applied Research Institute (NUARI).</span></li>
+      <li><span class="nd">Jun 2024</span><span class="nt">🎤 Presented at the <strong>15th Annual First-Year Engineering Experience (FYEE) Conference</strong> at Northeastern University.</span></li>
+      <li><span class="nd">May 2024</span><span class="nt">📊 Presented a poster at the <strong>MassDOT Transportation Innovation Conference</strong> at the DCU Center, Worcester, MA.</span></li>
+      <li><span class="nd">May 2024</span><span class="nt">🎟️ Attended the <strong>NEUTC (New England University Transportation Center) Symposium</strong> in Worcester, MA.</span></li>
+      <li><span class="nd">Apr 2024</span><span class="nt">🔋 Began as an <strong>Undergraduate Research Assistant</strong> at NEUTC, studying battery electric vehicle (BEV) adoption across Vermont.</span></li>
+      <li><span class="nd">Feb 2024</span><span class="nt">🎤 Presented at the <strong>Cybersecurity Research in Undergraduate Programs (CyRUP) Conference</strong> at Norwich University.</span></li>
+      <li><span class="nd">Nov 2022</span><span class="nt">📚 Began tutoring as a <strong>Peer Tutor</strong> at the NU Center for Academic Success and Achievement.</span></li>
+    </ul>
+  </section>
 
-<section class="section" id="publications"><div class="inner">
-<div class="sh rv"><div class="sh-label">03 – Publications</div><h2 class="sh-title">Selected <em>works</em></h2></div>
-<div>
-<div class="pub rv"><div><span class="pub-badge review">Under Review</span></div><div><h4>Multimodal traffic analysis in wearable XR systems</h4><div class="venue">Submitted to ACM IMC 2026 · <a href="mailto:majd.khalaff@gmail.com">Reach out for early draft</a></div></div></div>
-<div class="pub rv"><div><span class="pub-badge review">Under Review</span></div><div><h4>AI-assisted spatial awareness for accessibility</h4><div class="venue">Submitted to IEEE Transactions on Human-Machine Systems · <a href="mailto:majd.khalaff@gmail.com">Reach out for early draft</a></div></div></div>
-<div class="pub rv"><div><span class="pub-badge review">Under Review</span></div><div><h4>Adaptive bitrate control for immersive scene streaming</h4><div class="venue">Submitted to ACM SIGCOMM 2026 · <a href="mailto:majd.khalaff@gmail.com">Reach out for early draft</a></div></div></div>
-<div class="pub rv"><div><span class="pub-badge published">Published</span></div><div><h4>Identifying Persons of Interest in Digital Forensics Using NLP-Based AI</h4><div class="authors">J. Adkins, A. Bataineh, <strong>M. Khalaf</strong></div><div class="venue">Future Internet, 16(11):426, 2024 · <a href="https://doi.org/10.3390/fi16110426" target="_blank">doi:10.3390/fi16110426</a></div></div></div>
-<div class="pub rv"><div><span class="pub-badge published">Published</span></div><div><h4>Future-Ready Students: Survey Analysis Utilizing Natural Language Processing</h4><div class="authors">T. C. Olukanni, <strong>M. Khalaf</strong>, M. Cross, D. M. Feinauer, A. Al Bataineh</div><div class="venue">FYEE 2024 · <a href="https://doi.org/10.18260/1-2--48593" target="_blank">doi:10.18260/1-2--48593</a></div></div></div>
-<div class="pub rv"><div><span class="pub-badge published">Published</span></div><div><h4>Advanced Misinformation Detection: A Bi-LSTM Model Optimized by Genetic Algorithms</h4><div class="authors">A. Al Bataineh, V. Reyes, T. Olukanni, <strong>M. Khalaf</strong>, A. Vibho, R. Pedyuk</div><div class="venue">Electronics, 12(15):3250, 2023 · <a href="https://doi.org/10.3390/electronics12153250" target="_blank">doi:10.3390/electronics12153250</a></div></div></div>
-</div>
-</div></section>
+  <section id="research">
+    <h2 class="sec">Research</h2>
+    <div class="research">
+      <p class="muted">I build low-power wearable and wireless sensing systems for spatial intelligence. My focus areas:</p>
+      <ul class="rlist">
+        <li><b>Wireless traffic in wearables.</b> Measuring and modeling how XR and AI glasses use the network, including traffic patterns, energy cost, and latency across BLE, Wi-Fi, and 5G, to inform system and protocol design.</li>
+        <li><b>Low-power wearable sensing.</b> Sensing modalities that fit a wearable's power envelope, including capacitive eye tracking that replaces always-on cameras for continuous, privacy-preserving spatial inference.</li>
+        <li><b>Edge streaming for XR.</b> Delivering spatially rich media (3D scenes, immersive content) under real network conditions using edge computation and adaptive algorithms.</li>
+      </ul>
+    </div>
+  </section>
 
-<section class="section" id="experience"><div class="inner">
-<div class="sh rv"><div class="sh-label">04 – Experience</div><h2 class="sh-title">Building systems at <em>every layer</em></h2></div>
-<div class="timeline">
-<div class="t-item rv"><div class="t-date">Feb 2025 – Sep 2025</div><div class="t-role">Software Engineer II</div><div class="t-co">Atombeam Technologies</div><div class="t-loc">Moraga, CA</div><div class="t-desc">Developed cloud infrastructure using Infrastructure-as-Code, optimized data pipelines for compression algorithms, designed ETL flows, and improved CI/CD automation and observability for distributed systems.</div></div>
-<div class="t-item rv"><div class="t-date">Jun 2024 – Aug 2024</div><div class="t-role">Site Reliability Engineer Intern</div><div class="t-co">Walmart Advanced Systems & Robotics</div><div class="t-loc">Andover, MA</div><div class="t-desc">Automated deployments on Linux VMs with Ansible, Docker, and Azure CLI. Containerized Datadog agents for synthetic testing, optimized a Golang documentation viewer with goroutines, and automated artifact distribution.</div></div>
-<div class="t-item rv"><div class="t-date">Jan 2024 – May 2025</div><div class="t-role">AI Research Fellow & Teaching Assistant</div><div class="t-co">Norwich University AI Center</div><div class="t-loc">Northfield, VT</div><div class="t-desc">Collaborated across digital forensics, medical, and ECE domains to design AI solutions. Built and processed complex datasets, delivered lectures for senior-level AI courses, and mentored French military college students on AI capstone projects.</div></div>
-</div>
-</div></section>
+  <section id="publications">
+    <h2 class="sec">Publications</h2>
 
-<section class="section" id="education"><div class="inner">
-<div class="sh rv"><div class="sh-label">05 – Education</div><h2 class="sh-title">Academic <em>foundation</em></h2></div>
-<div class="edu-grid">
-<div class="edu rv"><div class="edu-deg">Ph.D. Student</div><div class="edu-school">Northeastern University</div><div class="edu-field">Computer Engineering</div><div class="edu-date">September 2025 – May 2030 (expected)</div><div class="edu-adv">Advisor: <a href="https://sinrg.org/" target="_blank">Prof. Mallesham Dasari</a></div></div>
-<div class="edu rv rv-d1"><div class="edu-deg">B.S.</div><div class="edu-school">Norwich University</div><div class="edu-field">Electrical & Computer Engineering</div><div class="edu-date">August 2021 – May 2025</div><div class="edu-honors"><div class="edu-hon">Student Engineer of the Year, 2025</div><div class="edu-hon">Carol E. Stephens Memorial Award, 2024</div><div class="edu-hon">Engineers Society Freshman Award, 2022</div><div class="edu-hon">President, Eta Kappa Nu (HKN)</div><div class="edu-hon">Vice President, Tau Beta Pi</div></div></div>
-</div>
-</div></section>
+    <div class="pub-sub">Preprints &amp; Under Review</div>
 
-<section class="section" id="skills"><div class="inner">
-<div class="sh rv"><div class="sh-label">06 – Technical Skills</div><h2 class="sh-title">Tools of the <em>trade</em></h2></div>
-<div class="sk-grid">
-<div class="sk rv"><div class="sk-title">Languages</div><div class="sk-tags"><span class="sk-t">Python</span><span class="sk-t">Golang</span><span class="sk-t">C/C++</span><span class="sk-t">Bash</span><span class="sk-t">MATLAB</span><span class="sk-t">R</span><span class="sk-t">Node.js</span><span class="sk-t">Verilog/VHDL</span></div></div>
-<div class="sk rv rv-d1"><div class="sk-title">ML / AI</div><div class="sk-tags"><span class="sk-t">PyTorch</span><span class="sk-t">TensorFlow</span><span class="sk-t">Transformers</span><span class="sk-t">GANs</span><span class="sk-t">Hugging Face</span><span class="sk-t">Pandas</span><span class="sk-t">NumPy</span></div></div>
-<div class="sk rv rv-d2"><div class="sk-title">Wireless & Networking</div><div class="sk-tags"><span class="sk-t">Wi-Fi</span><span class="sk-t">BLE</span><span class="sk-t">5G</span><span class="sk-t">RF/Antenna</span><span class="sk-t">TCP/IP</span><span class="sk-t">Wireshark</span><span class="sk-t">QoS</span></div></div>
-<div class="sk rv"><div class="sk-title">Hardware</div><div class="sk-tags"><span class="sk-t">Arduino</span><span class="sk-t">Raspberry Pi</span><span class="sk-t">ESP32</span><span class="sk-t">MSP430</span><span class="sk-t">SPI/I2C/UART</span><span class="sk-t">Oscilloscopes</span></div></div>
-<div class="sk rv rv-d1"><div class="sk-title">Cloud / DevOps</div><div class="sk-tags"><span class="sk-t">AWS</span><span class="sk-t">Azure</span><span class="sk-t">Terraform</span><span class="sk-t">Docker</span><span class="sk-t">Kubernetes</span><span class="sk-t">Ansible</span><span class="sk-t">GitLab CI</span><span class="sk-t">Helm</span></div></div>
-<div class="sk rv rv-d2"><div class="sk-title">Data</div><div class="sk-tags"><span class="sk-t">PostgreSQL</span><span class="sk-t">MySQL</span><span class="sk-t">REST APIs</span><span class="sk-t">Linux Admin</span></div></div>
-</div>
-</div></section>
+    <div class="pub">
+      <div class="thumb th1"><span class="tv">SenSys '26</span><span class="tt">Capacitive Eye Tracking</span></div>
+      <div>
+        <div class="pub-t">Capacitive Eye Tracking for Low-Power Smart Glasses <span class="badge r">Under Review</span></div>
+        <div class="pub-a"><span class="me">M. Khalaf</span>, et al.</div>
+        <div class="pub-v"><i>Under submission</i> · ACM SenSys 2026</div>
+        <div class="pub-links">Draft available on request: <a href="mailto:khalaf.m@northeastern.edu">khalaf.m@northeastern.edu</a></div>
+      </div>
+    </div>
 
-<section class="section" id="updates"><div class="inner">
-<div class="sh rv"><div class="sh-label">07 – Updates</div><h2 class="sh-title">What I'm <em>up to</em></h2></div>
-<div class="updates-tl">
-<div class="u-item rv"><div class="u-date">Feb 2026</div><div class="u-text">Submitted paper to <strong>ACM SIGCOMM 2026</strong> on adaptive bitrate control for XR streaming <span class="u-tag">submission</span></div></div>
-<div class="u-item rv"><div class="u-date">Nov 2025</div><div class="u-text">Submitted paper to <strong>ACM IMC 2026</strong> on multimodal traffic analysis in wearable XR systems <span class="u-tag">submission</span></div></div>
-<div class="u-item rv"><div class="u-date">Sep 2025</div><div class="u-text">Started <strong>Ph.D. in Computer Engineering</strong> at Northeastern University, joining the SINRG lab <span class="u-tag">milestone</span></div></div>
-<div class="u-item rv"><div class="u-date">Oct 2025</div><div class="u-text">Submitted paper to <strong>IEEE Transactions on Human-Machine Systems</strong> on AI-assisted spatial awareness <span class="u-tag">submission</span></div></div>
-<div class="u-item rv"><div class="u-date">May 2025</div><div class="u-text">Graduated from <strong>Norwich University</strong> with B.S. in Electrical & Computer Engineering <span class="u-tag">milestone</span></div></div>
-<div class="u-item rv"><div class="u-date">Feb 2025</div><div class="u-text">Started as <strong>Software Engineer</strong> at Atombeam Technologies <span class="u-tag">industry</span></div></div>
-<div class="u-item rv"><div class="u-date">Feb 2025</div><div class="u-text">Received <strong>Student Engineer of the Year</strong> award at Norwich University <span class="u-tag">award</span></div></div>
-<div class="u-item rv"><div class="u-date">Nov 2024</div><div class="u-text">Published paper on <strong>NLP-based digital forensics</strong> in Future Internet <span class="u-tag">publication</span></div></div>
-<div class="u-item rv"><div class="u-date">Jun 2024</div><div class="u-text">Presented at <strong>FYEE 2024</strong> in Boston on NLP-based survey analysis <span class="u-tag">talk</span></div></div>
-<div class="u-item rv"><div class="u-date">May 2024</div><div class="u-text">Started <strong>SRE internship</strong> at Walmart Advanced Systems & Robotics <span class="u-tag">industry</span></div></div>
-<div class="u-item rv"><div class="u-date">Aug 2023</div><div class="u-text">Published paper on <strong>misinformation detection</strong> using Bi-LSTM and genetic algorithms in Electronics <span class="u-tag">publication</span></div></div>
-</div>
-</div></section>
+    <div class="pub">
+      <div class="thumb th2"><span class="tv">MobiCom '26</span><span class="tt">XR Traffic Analysis</span></div>
+      <div>
+        <div class="pub-t">Multimodal Traffic Analysis in Wearable XR and AI Glasses <span class="badge r">Under Review</span></div>
+        <div class="pub-a"><span class="me">M. Khalaf</span>, et al.</div>
+        <div class="pub-v"><i>Under submission</i> · ACM MobiCom 2026</div>
+        <div class="pub-links">Draft available on request: <a href="mailto:khalaf.m@northeastern.edu">khalaf.m@northeastern.edu</a></div>
+      </div>
+    </div>
 
-<section class="contact" id="contact">
-<div class="sh-label">08 – Contact</div>
-<h2 class="sh-title">Let's <em>connect</em></h2>
-<p class="contact-sub">Open to research collaborations, spatial intelligence, and the future of wearable sensing.</p>
-<div class="contact-links">
-<a href="mailto:majd.khalaff@gmail.com" class="c-link pri">majd.khalaff@gmail.com</a>
-<a href="https://www.linkedin.com/in/majd-khalaf-b3313222a/" target="_blank" class="c-link">LinkedIn</a>
-<a href="https://sinrg.org/" target="_blank" class="c-link">SINRG Lab</a>
-</div>
-</section>
+    <div class="pub">
+      <div class="thumb th3"><span class="tv">IEEE THMS</span><span class="tt">Spatial Awareness</span></div>
+      <div>
+        <div class="pub-t">AI-Assisted Spatial Awareness for Accessibility <span class="badge r">Under Review</span></div>
+        <div class="pub-a"><span class="me">M. Khalaf</span>, et al.</div>
+        <div class="pub-v"><i>Under review</i> · IEEE Transactions on Human-Machine Systems</div>
+        <div class="pub-links">Draft available on request: <a href="mailto:khalaf.m@northeastern.edu">khalaf.m@northeastern.edu</a></div>
+      </div>
+    </div>
 
-<footer><p>&copy; 2026 Majd Khalaf · <a href="https://sinrg.org/" target="_blank">SINRG</a> · Northeastern University</p></footer>
+    <div class="pub-sub">Published</div>
+
+    <div class="pub">
+      <div class="thumb th4"><span class="tv">Future Internet</span><span class="tt">2024</span></div>
+      <div>
+        <div class="pub-t">Identifying Persons of Interest in Digital Forensics Using NLP-Based AI</div>
+        <div class="pub-a">J. Adkins, A. Bataineh, <span class="me">M. Khalaf</span></div>
+        <div class="pub-v"><i>Future Internet</i>, 16(11):426, 2024</div>
+        <div class="pub-links"><a href="https://doi.org/10.3390/fi16110426" target="_blank">DOI</a></div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="thumb th5"><span class="tv">FYEE '24</span><span class="tt">NLP Survey Analysis</span></div>
+      <div>
+        <div class="pub-t">Future-Ready Students: Survey Analysis Utilizing Natural Language Processing</div>
+        <div class="pub-a">T. C. Olukanni, <span class="me">M. Khalaf</span>, M. Cross, D. M. Feinauer, A. Al Bataineh</div>
+        <div class="pub-v">ASEE / IEEE FYEE 2024</div>
+        <div class="pub-links"><a href="https://doi.org/10.18260/1-2--48593" target="_blank">DOI</a></div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="thumb has-img"><img src="bilstm.png" alt="Bi-LSTM misinformation detection pipeline with genetic algorithm optimization"></div>
+      <div>
+        <div class="pub-t">Advanced Misinformation Detection: A Bi-LSTM Model Optimized by Genetic Algorithms</div>
+        <div class="pub-a">A. Al Bataineh, V. Reyes, T. Olukanni, <span class="me">M. Khalaf</span>, A. Vibho, R. Pedyuk</div>
+        <div class="pub-v"><i>Electronics</i>, 12(15):3250, 2023</div>
+        <div class="pub-links"><a href="https://doi.org/10.3390/electronics12153250" target="_blank">DOI</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="conferences">
+    <h2 class="sec">Conferences</h2>
+    <div class="entry">
+      <div class="e-main"><b>AWE USA 2026 (Augmented World Expo)</b><div class="e-sub">Role: Poster Presenter</div><div class="e-adv">The world's largest XR and spatial computing event.</div></div>
+      <div class="e-date">Jun 2026<br>Long Beach, CA</div>
+    </div>
+    <div class="entry">
+      <div class="e-main"><b>Northeastern COE PhD Research Expo 2026</b><div class="e-sub">Role: Poster Presenter</div><div class="e-adv">College of Engineering annual PhD research poster expo.</div></div>
+      <div class="e-date">Feb 2026<br>Boston, MA</div>
+    </div>
+    <div class="entry">
+      <div class="e-main"><b>Vermont Society of Engineers (VSE) 112th Annual Meeting</b><div class="e-sub">Role: Presenter</div><div class="e-adv">Presented capstone project AI-VIS: AI for visually impaired individuals.</div></div>
+      <div class="e-date">May 2025<br>Montpelier, VT</div>
+    </div>
+    <div class="entry">
+      <div class="e-main"><b>IEEE-Eta Kappa Nu Student Leadership Conference</b><div class="e-sub">Role: Attendee</div><div class="e-adv">IEEE-Eta Kappa Nu (HKN)</div></div>
+      <div class="e-date">Nov 2024<br>Charlotte, NC</div>
+    </div>
+    <div class="entry">
+      <div class="e-main"><b>AESH Annual International Conference on Soils, Sediments, Water, and Energy</b><div class="e-sub">Role: Presenter</div><div class="e-adv">UMass Amherst</div></div>
+      <div class="e-date">Oct 2024<br>Amherst, MA</div>
+    </div>
+    <div class="entry">
+      <div class="e-main"><b>Vermont AOT Research &amp; Innovation Symposium</b><div class="e-sub">Role: Poster Presenter</div><div class="e-adv">Vermont Agency of Transportation</div></div>
+      <div class="e-date">Sep 2024<br>Barre, VT</div>
+    </div>
+    <div class="entry">
+      <div class="e-main"><b>Artificial Intelligence (AI) Colloquium</b><div class="e-sub">Role: Presenter</div><div class="e-adv">Norwich University Applied Research Institute (NUARI)</div></div>
+      <div class="e-date">Aug 2024<br>Northfield, VT</div>
+    </div>
+    <div class="entry">
+      <div class="e-main"><b>15th Annual First-Year Engineering Experience Conference (FYEE)</b><div class="e-sub">Role: Presenter</div><div class="e-adv">Northeastern University. Presented work on NLP-based survey analysis.</div></div>
+      <div class="e-date">Jun 2024<br>Boston, MA</div>
+    </div>
+    <div class="entry">
+      <div class="e-main"><b>MassDOT Transportation Innovation Conference</b><div class="e-sub">Role: Poster Presenter</div><div class="e-adv">DCU Center</div></div>
+      <div class="e-date">May 2024<br>Worcester, MA</div>
+    </div>
+    <div class="entry">
+      <div class="e-main"><b>NEUTC Symposium</b><div class="e-sub">Role: Attendee</div><div class="e-adv">New England University Transportation Center</div></div>
+      <div class="e-date">May 2024<br>Worcester, MA</div>
+    </div>
+    <div class="entry">
+      <div class="e-main"><b>Cybersecurity Research in Undergraduate Programs (CyRUP) Conference</b><div class="e-sub">Role: Presenter</div><div class="e-adv">Norwich University</div></div>
+      <div class="e-date">Feb 2024<br>Northfield, VT</div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2 class="sec">Experience</h2>
+    <div class="entry">
+      <div class="e-main"><b>Research Assistant</b> · SINRG, Northeastern University<div class="e-sub">Research on wearable computing, wireless sensing, and spatial intelligence with <a href="https://mallesham.com/" target="_blank">Prof. Mallesham Dasari</a>.</div></div>
+      <div class="e-date">Sep 2025 to Present<br>Boston, MA</div>
+    </div>
+    <div class="entry">
+      <div class="e-main"><b>Software Engineer II</b> · Atombeam Technologies<div class="e-sub">Cloud infrastructure (IaC), data pipelines for compression, ETL design, CI/CD and observability for distributed systems.</div></div>
+      <div class="e-date">Feb to Sep 2025<br>Moraga, CA</div>
+    </div>
+    <div class="entry">
+      <div class="e-main"><b>Faculty &amp; Resident Assistant</b> · GIV Engineering (Governor's Institutes of Vermont)<div class="e-sub">Taught high school students to assemble solar trackers and served as a residential assistant for the engineering summer institute.</div></div>
+      <div class="e-date">Summer 2025<br>Northfield, VT</div>
+    </div>
+    <div class="entry">
+      <div class="e-main"><b>Site Reliability Engineer Intern</b> · Walmart Advanced Systems &amp; Robotics<div class="e-sub">Automated deployments with Ansible, Docker, Azure CLI; containerized Datadog synthetic testing; optimized a Go docs viewer with goroutines.</div></div>
+      <div class="e-date">Jun – Aug 2024<br>Andover, MA</div>
+    </div>
+    <div class="entry">
+      <div class="e-main"><b>AI Research Fellow &amp; Teaching Assistant</b> · Norwich University AI Center<div class="e-sub">AI methods across digital forensics, medical, and ECE domains; dataset curation; lectured in senior-level AI courses and mentored capstone students. Advised by <a href="https://www.linkedin.com/in/aalbata/" target="_blank">Prof. Ali Al Bataineh</a>.</div></div>
+      <div class="e-date">Jan 2024 – May 2025<br>Northfield, VT</div>
+    </div>
+    <div class="entry">
+      <div class="e-main"><b>Undergraduate Research Assistant</b> · NEUTC (New England University Transportation Center)<div class="e-sub">Investigated how climate, terrain, varying road conditions, and road classification affect battery electric vehicle (BEV) adoption across Vermont.</div><div class="e-adv">Advised by <a href="https://www.linkedin.com/in/michael-cross-nu/" target="_blank">Prof. Michael Cross</a></div></div>
+      <div class="e-date">Apr – Jul 2024<br>Northfield, VT</div>
+    </div>
+    <div class="entry">
+      <div class="e-main"><b>Peer Tutor</b> · NU Center for Academic Success and Achievement<div class="e-sub">Tutored students individually and in groups in math, physics, and electrical engineering, adapting techniques to each student's learning style to provide a supportive learning environment.</div></div>
+      <div class="e-date">Nov 2022 to Present<br>Northfield, VT</div>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2 class="sec">Education</h2>
+    <div class="entry">
+      <div class="e-main"><b>Northeastern University</b><div class="e-sub">Ph.D., Computer Engineering</div><div class="e-adv">Advisor: <a href="https://sinrg.org/" target="_blank">Prof. Mallesham Dasari</a> (SINRG)</div></div>
+      <div class="e-date">2025 – 2030 (expected)</div>
+    </div>
+    <div class="entry">
+      <div class="e-main"><b>Norwich University</b><div class="e-sub">B.S., Electrical &amp; Computer Engineering</div><div class="e-adv">Minors in Mathematics and Computer Science</div></div>
+      <div class="e-date">2021 – 2025</div>
+    </div>
+  </section>
+
+  <section id="honors">
+    <h2 class="sec">Honors &amp; Awards</h2>
+    <ul class="honors">
+      <li>Student Engineer of the Year <span class="hy">· Norwich University, 2025</span></li>
+      <li>Carol E. Stephens Memorial Award <span class="hy">· 2024</span></li>
+      <li>Engineers Society Freshman Award <span class="hy">· 2022</span></li>
+      <li>President, Eta Kappa Nu (HKN)</li>
+      <li>Vice President, Tau Beta Pi</li>
+    </ul>
+  </section>
+
+  <section id="skills">
+    <h2 class="sec">Technical Skills</h2>
+    <div class="skills">
+      <div><b>Languages:</b> Python, Go, C/C++, MATLAB, Verilog/VHDL, R, Bash</div>
+      <div><b>ML / Signal:</b> PyTorch, TensorFlow, Transformers, scikit-learn, NumPy</div>
+      <div><b>Wireless:</b> Wi-Fi, BLE, 5G, RF/Antenna, Wireshark, TCP/IP</div>
+      <div><b>Embedded:</b> ESP32, MSP430, Arduino, Raspberry Pi, SPI/I2C/UART</div>
+      <div><b>Cloud/DevOps:</b> AWS, Azure, Terraform, Docker, Kubernetes, Ansible</div>
+      <div><b>Data:</b> PostgreSQL, MySQL, REST APIs, Linux administration</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Majd Khalaf · <a href="mailto:khalaf.m@northeastern.edu">khalaf.m@northeastern.edu</a> · <a href="https://sinrg.org/" target="_blank">SINRG</a>, Northeastern University</p>
+</footer>
 
 <script>
-const C=document.getElementById('bg'),X=C.getContext('2d');let W,H,sY=0;
-function resize(){W=C.width=innerWidth;H=C.height=innerHeight}resize();
-addEventListener('resize',resize);addEventListener('scroll',()=>{sY=scrollY});
-
-function rXf(p,a){const c=Math.cos(a),s=Math.sin(a);return[p[0],p[1]*c-p[2]*s,p[1]*s+p[2]*c]}
-function rYf(p,a){const c=Math.cos(a),s=Math.sin(a);return[p[0]*c+p[2]*s,p[1],-p[0]*s+p[2]*c]}
-function rZf(p,a){const c=Math.cos(a),s=Math.sin(a);return[p[0]*c-p[1]*s,p[0]*s+p[1]*c,p[2]]}
-function proj(p,f){const z=p[2]+f,sc=f/Math.max(z,1);return[p[0]*sc,p[1]*sc,sc]}
-
-function mkGlasses(s){const P=[],E=[],n=14;for(let i=0;i<n;i++){const a=(i/n)*Math.PI*2;P.push([-s*.55+Math.cos(a)*s*.35,Math.sin(a)*s*.22,0])}for(let i=0;i<n;i++)E.push([i,(i+1)%n]);const o=P.length;for(let i=0;i<n;i++){const a=(i/n)*Math.PI*2;P.push([s*.55+Math.cos(a)*s*.35,Math.sin(a)*s*.22,0])}for(let i=0;i<n;i++)E.push([o+i,o+(i+1)%n]);P.push([-s*.2,-s*.04,0],[s*.2,-s*.04,0]);E.push([P.length-2,P.length-1]);P.push([-s*.9,0,0],[-s*1.1,0,s*.5]);E.push([P.length-2,P.length-1],[n/2|0,P.length-2]);P.push([s*.9,0,0],[s*1.1,0,s*.5]);E.push([P.length-2,P.length-1],[o+(n/2|0),P.length-2]);return{P,E}}
-function mkMcu(s){const P=[],E=[],w=s*.8,h=s*.5,d=s*.04;P.push([-w,-h,d],[w,-h,d],[w,h,d],[-w,h,d]);E.push([0,1],[1,2],[2,3],[3,0]);P.push([-w,-h,-d],[w,-h,-d],[w,h,-d],[-w,h,-d]);E.push([4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]);const c=s*.2;P.push([-c,-c,d+1],[c,-c,d+1],[c,c,d+1],[-c,c,d+1]);E.push([8,9],[9,10],[10,11],[11,8]);for(let i=0;i<5;i++){const y=-h+h*.3+i*(h*1.4/4);P.push([-w,y,d],[-w-s*.14,y,d]);E.push([P.length-2,P.length-1])}for(let i=0;i<5;i++){const y=-h+h*.3+i*(h*1.4/4);P.push([w,y,d],[w+s*.14,y,d]);E.push([P.length-2,P.length-1])}return{P,E}}
-function mkWatch(s){const P=[],E=[],n=16;for(let i=0;i<n;i++){const a=(i/n)*Math.PI*2,r=s*.3;P.push([Math.sign(Math.cos(a))*Math.pow(Math.abs(Math.cos(a)),.7)*r,Math.sign(Math.sin(a))*Math.pow(Math.abs(Math.sin(a)),.7)*r,s*.04])}for(let i=0;i<n;i++)E.push([i,(i+1)%n]);const o=P.length;for(let i=0;i<n;i++)P.push([P[i][0],P[i][1],-s*.04]);for(let i=0;i<n;i++)E.push([o+i,o+(i+1)%n]);for(let i=0;i<n;i+=4)E.push([i,o+i]);P.push([-s*.11,-s*.3,0],[s*.11,-s*.3,0],[s*.11,-s*.65,0],[-s*.11,-s*.65,0]);let b=P.length-4;E.push([b,b+1],[b+1,b+2],[b+2,b+3],[b+3,b]);P.push([-s*.11,s*.3,0],[s*.11,s*.3,0],[s*.11,s*.65,0],[-s*.11,s*.65,0]);b=P.length-4;E.push([b,b+1],[b+1,b+2],[b+2,b+3],[b+3,b]);return{P,E}}
-function mkSensor(s){const P=[],E=[],n=20;for(let i=0;i<n;i++){const a=(i/n)*Math.PI*2;P.push([Math.cos(a)*s*.45,Math.sin(a)*s*.45,0])}for(let i=0;i<n;i++)E.push([i,(i+1)%n]);const o=P.length;for(let i=0;i<n;i++){const a=(i/n)*Math.PI*2;P.push([Math.cos(a)*s*.18,Math.sin(a)*s*.18,s*.04])}for(let i=0;i<n;i++)E.push([o+i,o+(i+1)%n]);for(let i=0;i<n;i+=4)E.push([i,o+i]);return{P,E}}
-function mkHeadset(s){const P=[],E=[],n=10;for(let i=0;i<n;i++){const a=(i/n)*Math.PI*2;P.push([Math.cos(a)*s*.6,Math.sin(a)*s*.32,s*.18])}for(let i=0;i<n;i++)E.push([i,(i+1)%n]);const o=P.length;for(let i=0;i<n;i++)P.push([P[i][0]*.85,P[i][1]*.85,-s*.12]);for(let i=0;i<n;i++)E.push([o+i,o+(i+1)%n]);for(let i=0;i<n;i+=2)E.push([i,o+i]);P.push([s*.5,0,-s*.12],[s*.65,0,-s*.4],[s*.45,0,-s*.58],[-s*.45,0,-s*.58],[-s*.65,0,-s*.4],[-s*.5,0,-s*.12]);const si=P.length-6;for(let i=0;i<5;i++)E.push([si+i,si+i+1]);return{P,E}}
-function mkAntenna(s){const P=[],E=[];P.push([0,-s*.8,0],[0,s*.8,0]);E.push([0,1]);P.push([-s*.3,-s*.45,0],[s*.3,-s*.45,0]);E.push([2,3],[0,2],[0,3]);P.push([-s*.2,-s*.15,0],[s*.2,-s*.15,0]);E.push([4,5],[0,4],[0,5]);P.push([-s*.35,s*.8,-s*.18],[s*.35,s*.8,-s*.18],[0,s*.8,s*.25]);E.push([6,7],[7,8],[8,6],[1,6],[1,7],[1,8]);return{P,E}}
-
-const gens={glasses:mkGlasses,mcu:mkMcu,wearable:mkWatch,sensor:mkSensor,headset:mkHeadset,antenna:mkAntenna};
-
-class Obj{constructor(t,s,x,y,z,col,spd){const g=gens[t](s);this.P=g.P;this.E=g.E;this.x=x;this.y=y;this.z=z;this.col=col;this.rx=Math.random()*6.28;this.ry=Math.random()*6.28;this.rz=Math.random()*6.28;this.sx=(Math.random()-.5)*spd;this.sy=(Math.random()-.5)*spd*.5;this.sz=(Math.random()-.5)*spd*.3;this.bp=Math.random()*6.28;this.ba=12+Math.random()*18;this.bs=.0007+Math.random()*.0005;this.by=y}
-draw(t){this.rx+=this.sx;this.ry+=this.sy;this.rz+=this.sz;const yy=this.by+Math.sin(t*this.bs+this.bp)*this.ba,sy=yy-sY*.18,f=600;const pp=this.P.map(p=>{let r=rXf(p,this.rx);r=rYf(r,this.ry);r=rZf(r,this.rz);r=[r[0]+this.x,r[1]+sy,r[2]+this.z];return proj(r,f)});this.E.forEach(([a,b])=>{if(a>=pp.length||b>=pp.length)return;const pa=pp[a],pb=pp[b];if(pa[2]<.1||pb[2]<.1)return;const al=Math.min(pa[2],pb[2])*.4;if(al<.015)return;X.beginPath();X.moveTo(pa[0]+W/2,pa[1]+H/2);X.lineTo(pb[0]+W/2,pb[1]+H/2);X.strokeStyle=this.col.replace('A',Math.min(al,.3).toFixed(3));X.lineWidth=Math.max(.4,al*1.5);X.stroke()})}}
-
-const c1='rgba(0,212,170,A)',c2='rgba(0,180,216,A)',c3='rgba(140,130,200,A)',cols=[c1,c2,c3];
-const objs=[];
-[{t:'glasses',x:-280,y:60,z:280,s:60,sp:.002},{t:'sensor',x:350,y:120,z:350,s:38,sp:.003},{t:'headset',x:-380,y:300,z:400,s:42,sp:.0015},{t:'mcu',x:300,y:380,z:300,s:45,sp:.003},{t:'antenna',x:-150,y:200,z:450,s:35,sp:.002},{t:'wearable',x:-320,y:750,z:250,s:48,sp:.002},{t:'glasses',x:380,y:900,z:320,s:55,sp:.0015},{t:'mcu',x:-200,y:1100,z:350,s:40,sp:.003},{t:'sensor',x:250,y:1200,z:280,s:42,sp:.002},{t:'headset',x:-350,y:1500,z:300,s:45,sp:.002},{t:'antenna',x:320,y:1600,z:380,s:32,sp:.003},{t:'glasses',x:-220,y:1800,z:250,s:50,sp:.0015},{t:'wearable',x:380,y:1950,z:320,s:44,sp:.002},{t:'mcu',x:-100,y:1700,z:400,s:38,sp:.003},{t:'sensor',x:280,y:2300,z:280,s:40,sp:.002},{t:'glasses',x:-360,y:2500,z:340,s:48,sp:.0015},{t:'headset',x:200,y:2700,z:300,s:40,sp:.002},{t:'antenna',x:-280,y:2600,z:380,s:30,sp:.003},{t:'mcu',x:350,y:3100,z:250,s:48,sp:.003},{t:'wearable',x:-300,y:3300,z:300,s:42,sp:.002},{t:'sensor',x:180,y:3500,z:350,s:36,sp:.002},{t:'glasses',x:-160,y:3200,z:280,s:52,sp:.0015},{t:'headset',x:320,y:3900,z:320,s:38,sp:.002},{t:'antenna',x:-360,y:4100,z:280,s:32,sp:.003},{t:'mcu',x:230,y:4300,z:300,s:42,sp:.003},{t:'wearable',x:-280,y:4500,z:350,s:46,sp:.002},{t:'glasses',x:350,y:4900,z:280,s:50,sp:.0015},{t:'sensor',x:-180,y:5100,z:320,s:38,sp:.002}].forEach((p,i)=>{objs.push(new Obj(p.t,p.s,p.x,p.y,p.z,cols[i%3],p.sp))});
-
-const pts=[];const pN=Math.min(50,Math.floor(W*H/18000));
-for(let i=0;i<pN;i++)pts.push({x:(Math.random()-.5)*W*.85,y:Math.random()*H*5,z:Math.random()*400+200,ph:Math.random()*6.28,sp:.001+Math.random()*.003,am:Math.random()*15+6,r:.3+Math.random()*.8,nd:Math.random()>.9});
-
-function frame(t){X.clearRect(0,0,W,H);
-const gs=120,oy=(-sY*.04)%gs;X.strokeStyle='rgba(0,212,170,.02)';X.lineWidth=.5;
-for(let x=0;x<W;x+=gs){X.beginPath();X.moveTo(x,0);X.lineTo(x,H);X.stroke()}
-for(let y=oy;y<H;y+=gs){X.beginPath();X.moveTo(0,y);X.lineTo(W,y);X.stroke()}
-const dr=[];pts.forEach(n=>{const nx=n.x+W/2+Math.sin(t*n.sp+n.ph)*n.am,ny=n.y+Math.cos(t*n.sp*.6+n.ph)*n.am*.3,sy=ny-sY*(.12+(n.z/500)*.45),p=500/(500+n.z),sx=W/2+(nx-W/2)*p,ssy=H/2+(sy-H/2)*p;if(ssy<-30||ssy>H+30)return;const a=p*.5;if(n.nd){const pu=.75+.25*Math.sin(t*.002+n.ph);X.beginPath();X.arc(sx,ssy,n.r*p*2*pu,0,Math.PI*2);X.fillStyle='rgba(0,212,170,'+(a*.5*pu).toFixed(3)+')';X.fill()}else{X.beginPath();X.arc(sx,ssy,n.r*p,0,Math.PI*2);X.fillStyle='rgba(150,160,190,'+(a*.25).toFixed(3)+')';X.fill()}dr.push({x:sx,y:ssy,a,nd:n.nd})});
-for(let i=0;i<dr.length;i++){for(let j=i+1;j<dr.length;j++){const dx=dr[i].x-dr[j].x,dy=dr[i].y-dr[j].y,d=Math.sqrt(dx*dx+dy*dy),mx=(dr[i].nd||dr[j].nd)?120:70;if(d<mx){X.beginPath();X.moveTo(dr[i].x,dr[i].y);X.lineTo(dr[j].x,dr[j].y);X.strokeStyle='rgba(0,212,170,'+((1-d/mx)*.08).toFixed(3)+')';X.lineWidth=.4;X.stroke()}}}
-objs.forEach(o=>o.draw(t));requestAnimationFrame(frame)}requestAnimationFrame(frame);
-
-document.querySelectorAll('.rv').forEach(el=>{new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('vis')})},{threshold:.1,rootMargin:'0px 0px -30px 0px'}).observe(el)});
-
-const nav=document.getElementById('nav'),secs=document.querySelectorAll('.section,.hero,.contact'),nAs=document.querySelectorAll('.nav-links a');
-addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>50);let c='';secs.forEach(s=>{if(scrollY>=s.offsetTop-200)c=s.id});nAs.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+c))});
-const nt=document.getElementById('nt'),nl=document.getElementById('nl');
-nt.addEventListener('click',()=>{nt.classList.toggle('on');nl.classList.toggle('open')});
-nl.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nt.classList.remove('on');nl.classList.remove('open')}));
-document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'})})});
+const secs=[...document.querySelectorAll('main section')],links=[...document.querySelectorAll('.nav-in a[href^="#"]')];
+function onScroll(){let cur='';secs.forEach(s=>{if(scrollY>=s.offsetTop-90)cur=s.id});links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur))}
+addEventListener('scroll',onScroll);onScroll();
 </script>
 </body>
 </html>
