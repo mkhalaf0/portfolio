@@ -381,6 +381,7 @@ footer a{color:var(--link)}
   <section id="news">
     <h2 class="sec">News</h2>
     <ul class="news">
+      <li><span class="nd">Jul 2026</span><span class="nt">🥽 Attended the <strong>Human-Centered Immersive Perception Evaluation Workshop</strong> at <strong>Worcester Polytechnic Institute (WPI)</strong> — shared our <strong>SINRG</strong> work, learned about <strong>ARBot</strong> and <strong>SensorFlex</strong>, and discussed future collaborations in XR sensing, privacy, systems, and human-centered evaluation. Thanks to Prof. Tian Guo and the organizers!</span></li>
       <li><span class="nd">Jun 2026</span><span class="nt">🕶️ Presenting a poster at <strong>AWE USA 2026</strong> (Augmented World Expo), the world's largest XR and spatial computing event, in Long Beach, CA.</span></li>
       <li><span class="nd">May 2026</span><span class="nt">🔬 Submitted a paper on <strong>capacitive eye tracking</strong> for low-power smart glasses to <strong>ACM SenSys 2026</strong>.</span></li>
       <li><span class="nd">Apr 2026</span><span class="nt">📡 Submitted a paper on <strong>multimodal traffic analysis</strong> in wearable XR / AI glasses to <strong>ACM MobiCom 2026</strong>.</span></li>
@@ -738,7 +739,7 @@ document.querySelectorAll('[data-copy]').forEach(b=>{
 
 // news category tags
 (function(){
-  const tags=['talk','pub','pub','talk','pub','milestone','milestone','milestone','talk','award','pub','conf','talk','talk','talk','talk','talk','conf','milestone','talk','milestone'];
+  const tags=['conf','talk','pub','pub','talk','pub','milestone','milestone','milestone','talk','award','pub','conf','talk','talk','talk','talk','talk','conf','milestone','talk','milestone'];
   const label={pub:'Publication',talk:'Talk',award:'Award',milestone:'Milestone',conf:'Conference'};
   document.querySelectorAll('.news li').forEach((li,i)=>{const t=tags[i];if(!t)return;const nt=li.querySelector('.nt');if(!nt)return;const s=document.createElement('span');s.className='ntag tag-'+t;s.textContent=label[t];nt.appendChild(s);});
 })();
@@ -790,7 +791,7 @@ document.querySelectorAll('[data-copy]').forEach(b=>{
     {c:'Amherst, MA',ll:[42.3732,-72.5199],items:[{t:'AESH Conference · Presenter · Oct 2024',u:''}]},
     {c:'Barre, VT',ll:[44.1970,-72.5020],items:[{t:'Vermont AOT Research and Innovation Symposium · Poster · Sep 2024',u:''}]},
     {c:'Northfield, VT',ll:[44.1456,-72.6573],items:[{t:'AI Colloquium (NUARI) · Presenter · Aug 2024',u:''},{t:'CyRUP Conference · Presenter · Feb 2024',u:''}]},
-    {c:'Worcester, MA',ll:[42.2626,-71.8023],items:[{t:'MassDOT Transportation Innovation Conference · Poster · May 2024',u:''},{t:'NEUTC Symposium · Attendee · May 2024',u:''}]}
+    {c:'Worcester, MA',ll:[42.2626,-71.8023],items:[{t:'Human-Centered Immersive Perception Evaluation Workshop (WPI) · Attendee · Jul 2026',u:''},{t:'MassDOT Transportation Innovation Conference · Poster · May 2024',u:''},{t:'NEUTC Symposium · Attendee · May 2024',u:''}]}
   ];
   const map=L.map('confmap',{scrollWheelZoom:false});
   const light='https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
